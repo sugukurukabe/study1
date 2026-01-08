@@ -5,6 +5,7 @@ import { BookOpen, Video, Headphones, FileText, Trophy, Users, Globe, Zap, Award
 import Link from 'next/link'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { getLocale, getTranslations } from 'next-intl/server'
+import { motion } from 'framer-motion'
 import LandingVideoPlayer from '@/components/learning/LandingVideoPlayer'
 import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn } from '@/components/ui/AnimatedSection'
 import { HoverCard } from '@/components/ui/HoverCard'
@@ -428,7 +429,7 @@ export default async function LandingPage() {
                   </div>
                 </div>
               </HoverCard>
-            </SlideInRight>
+            </SlideInLeft>
 
             <SlideInRight delay={0.4}>
               <HoverCard scale={1.02}>
@@ -619,6 +620,3 @@ export default async function LandingPage() {
     </div>
   )
 }
-
-// motion.div のインポートを追加
-import { motion } from 'framer-motion'
