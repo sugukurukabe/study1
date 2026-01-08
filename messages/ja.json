@@ -1,0 +1,175 @@
+{
+  "common": {
+    "appName": "Sugu-Study",
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "continue": "続ける",
+    "back": "戻る",
+    "next": "次へ",
+    "submit": "送信"
+  },
+  "landing": {
+    "badge1": "特定技能2号 専門",
+    "badge2": "日本で働く外国人のための学習プラットフォーム",
+    "heroTitle": "Sugu-Study",
+    "heroSubtitle": "特定技能2号試験 合格を目指す！",
+    "heroDescription": "いつでも、どこでも、あなたのペースで学習。動画・音声・テキストで効率的に試験対策。",
+    "ctaPreview": "無料でコンテンツを見る",
+    "ctaSignup": "今すぐ無料登録",
+    "feature1": "完全無料で学習開始",
+    "feature2": "4言語対応",
+    "feature3": "オフライン学習可能",
+    "videoSection": {
+      "badge": "動画で解説",
+      "title": "特定技能2号とは？",
+      "description": "特定技能2号は、より高度な技能を持つ外国人労働者のための在留資格です。家族帯同や無期限更新が可能になり、日本での長期的なキャリア構築ができます。",
+      "videoTitle": "特定技能2号 完全ガイド",
+      "videoSubtitle": "3分でわかる特定技能2号のメリットと取得方法",
+      "benefit1Title": "家族帯同可能",
+      "benefit1Desc": "配偶者や子供と一緒に日本で暮らすことができます",
+      "benefit2Title": "在留期間の更新制限なし",
+      "benefit2Desc": "更新回数に上限がなく、長期的に日本で働けます",
+      "benefit3Title": "キャリアアップ",
+      "benefit3Desc": "管理職への道も開け、給与アップも期待できます"
+    },
+    "sectors": {
+      "badge": "業種別学習",
+      "title": "11の業種に対応",
+      "description": "学習したい業種を選んでください",
+      "agriculture": "農業",
+      "livestock": "畜産業",
+      "fishery": "漁業",
+      "construction": "建設",
+      "shipbuilding": "造船",
+      "automobile": "自動車整備",
+      "aviation": "航空",
+      "accommodation": "宿泊業",
+      "foodManufacturing": "食品製造",
+      "foodService": "外食",
+      "nursing": "介護",
+      "comingSoon": "準備中"
+    },
+    "learningStyles": {
+      "title": "3つの学習スタイル",
+      "videoTitle": "動画学習",
+      "videoDesc": "スライドとAI音声による分かりやすい解説。速度調整や字幕機能で自分のペースで学習。",
+      "audioTitle": "音声学習",
+      "audioDesc": "通勤時間や作業中にバックグラウンド再生。オフラインでも学習を続けられます。",
+      "textTitle": "テキスト学習",
+      "textDesc": "重要なポイントをテキストで確認。じっくり読んで理解を深められます。"
+    },
+    "features": {
+      "title": "Sugu-Studyの特徴",
+      "multiLanguageTitle": "4言語対応",
+      "multiLanguageDesc": "日本語、ベトナム語、インドネシア語、英語に対応。母国語で学習できます。",
+      "offlineTitle": "オフライン学習",
+      "offlineDesc": "PWA対応で、インターネットがなくても学習を続けられます。",
+      "gamificationTitle": "ゲーミフィケーション",
+      "gamificationDesc": "バッジやランキングで楽しく学習。継続のモチベーションが上がります。",
+      "referralTitle": "友達紹介特典",
+      "referralDesc": "友達を招待すると、両方に7日間の広告なし特典をプレゼント。"
+    },
+    "tiers": {
+      "title": "段階的に機能が解放",
+      "tier1": "Tier 1 - ゲスト",
+      "tier1Desc": "メール登録のみ",
+      "tier1Feature1": "動画講義",
+      "tier1Feature2": "基本音声ポッドキャスト",
+      "tier2": "Tier 2 - 学習者",
+      "tier2Desc": "居住地・職種登録",
+      "tier2Feature1": "学習履歴",
+      "tier2Feature2": "バッジシステム",
+      "tier2Feature3": "紹介システム",
+      "tier3": "Tier 3 - 認証済み",
+      "tier3Desc": "本人確認完了",
+      "tier3Feature1": "CBTシミュレーション",
+      "tier3Feature2": "修了証発行",
+      "tier3Feature3": "企業スカウト"
+    },
+    "cta": {
+      "badge": "特定技能2号試験対策",
+      "title": "今すぐ無料で始めましょう",
+      "description": "メールアドレスだけで簡単登録。まずは無料コンテンツをお試しください。",
+      "buttonPreview": "コンテンツを見る",
+      "buttonSignup": "無料登録"
+    },
+    "footer": {
+      "tagline": "日本で働く外国人のための学習プラットフォーム",
+      "specialist": "特定技能2号試験対策 専門サイト",
+      "login": "ログイン",
+      "signup": "新規登録",
+      "content": "コンテンツ",
+      "copyright": "© 2024 Sugu-Study. All rights reserved."
+    }
+  },
+  "home": {
+    "welcome": "ようこそ、{name}さん",
+    "continueStudy": "学習を続ける",
+    "recommendedCourses": "おすすめコース",
+    "yourProgress": "あなたの進捗",
+    "recentBadges": "最近獲得したバッジ"
+  },
+  "tier": {
+    "level1": "ゲスト",
+    "level2": "学習者",
+    "level3": "認証済み",
+    "upgrade": "アップグレード",
+    "upgradeNow": "今すぐアップグレード",
+    "upgradeMessage": "このコンテンツにアクセスするには、アカウントをアップグレードしてください"
+  },
+  "auth": {
+    "login": "ログイン",
+    "signup": "新規登録",
+    "logout": "ログアウト",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "fullName": "氏名",
+    "nationality": "国籍"
+  },
+  "learning": {
+    "video": "動画",
+    "audio": "音声",
+    "text": "テキスト",
+    "completed": "完了",
+    "inProgress": "学習中",
+    "notStarted": "未開始",
+    "offlineAvailable": "オフライン利用可能"
+  },
+  "exam": {
+    "drill": "ドリル練習",
+    "simulation": "本番シミュレーション",
+    "startExam": "試験開始",
+    "question": "問題",
+    "of": "/",
+    "timeRemaining": "残り時間",
+    "nextQuestion": "次の問題",
+    "previousQuestion": "前の問題",
+    "flagQuestion": "フラグ",
+    "submitExam": "試験を終了",
+    "score": "スコア",
+    "correct": "正解",
+    "incorrect": "不正解"
+  },
+  "profile": {
+    "myProfile": "マイプロフィール",
+    "editProfile": "プロフィール編集",
+    "prefecture": "都道府県",
+    "currentJob": "現在の職種",
+    "snsAccounts": "SNSアカウント",
+    "referralCode": "紹介コード",
+    "inviteFriends": "友達を招待"
+  },
+  "kyc": {
+    "title": "本人確認",
+    "uploadResidenceCard": "在留カードをアップロード",
+    "frontSide": "表面",
+    "backSide": "裏面",
+    "driversLicense": "運転免許証",
+    "hasLicense": "運転免許証を持っています",
+    "noLicense": "運転免許証を持っていません",
+    "pending": "審査中",
+    "verified": "承認済み",
+    "rejected": "却下"
+  }
+}

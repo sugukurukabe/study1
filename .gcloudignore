@@ -1,0 +1,35 @@
+# This file tells gcloud which files to upload for Cloud Build
+# First line must be a comment to prevent .gitignore inheritance
+
+# Exclude large directories (these are at project root level)
+/node_modules/
+/.next/
+/.git/
+/out/
+/build/
+/coverage/
+
+# Exclude unnecessary directories at root level
+/supabase/
+/sugusta2/
+
+# Exclude IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Exclude debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Exclude TypeScript build info
+*.tsbuildinfo
+
+# Exclude env files (handled by Cloud Run secrets)
+.env*
+!.env.example

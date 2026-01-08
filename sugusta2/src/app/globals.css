@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #8B5CF6;
+  --color-brand-secondary: #D946EF;
+  --color-brand-accent: #06B6D4;
+  --color-glass-bg: rgba(0, 0, 0, 0.03);
+  --color-glass-border: rgba(0, 0, 0, 0.08);
+  --color-light-bg: #FAFAFA;
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Antigravity Utilities */
+.glass-panel {
+  @apply bg-[var(--color-glass-bg)] border border-[var(--color-glass-border)] backdrop-blur-xl transition-all duration-500;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent;
+}

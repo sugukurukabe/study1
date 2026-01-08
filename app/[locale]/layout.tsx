@@ -1,0 +1,59 @@
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
+import { Noto_Sans_JP, Inter } from 'next/font/google'
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  variable: '--font-noto-sans-jp',
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+export function generateStaticParams() {
+  return [
+    { locale: 'ja' },
+    { locale: 'vi' },
+    { locale: 'id' },
+    { locale: 'en' },
+  ]
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  
+  // メッセージをインポート
+  let messages
+  try {
+    messages = (await import(`@/messages/${locale}.json`)).default
+  } catch (error) {
+    // フォールバック
+    messages = (await import('@/messages/ja.json')).default
+  }
+
+  return (
+    <html lang={locale} className={`${notoSansJP.variable} ${inter.variable}`}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#4f46e5" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      </head>
+      <body className="font-sans antialiased">
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  )
+}
+

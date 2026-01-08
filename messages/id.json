@@ -1,0 +1,175 @@
+{
+  "common": {
+    "appName": "Sugu-Study",
+    "loading": "Memuat...",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "continue": "Lanjutkan",
+    "back": "Kembali",
+    "next": "Berikutnya",
+    "submit": "Kirim"
+  },
+  "landing": {
+    "badge1": "Khusus Tokutei Ginou 2",
+    "badge2": "Platform Belajar untuk Pekerja Asing di Jepang",
+    "heroTitle": "Sugu-Study",
+    "heroSubtitle": "Raih Kelulusan Ujian Tokutei Ginou 2!",
+    "heroDescription": "Belajar kapan saja, di mana saja, sesuai kecepatan Anda. Persiapan ujian yang efisien dengan video, audio, dan teks.",
+    "ctaPreview": "Lihat Konten Gratis",
+    "ctaSignup": "Daftar Gratis Sekarang",
+    "feature1": "Mulai belajar gratis",
+    "feature2": "Tersedia dalam 4 bahasa",
+    "feature3": "Belajar offline tersedia",
+    "videoSection": {
+      "badge": "Penjelasan Video",
+      "title": "Apa itu Tokutei Ginou 2?",
+      "description": "Tokutei Ginou 2 adalah status tinggal untuk pekerja asing dengan keterampilan tinggi. Anda bisa membawa keluarga dan memperbarui visa tanpa batas, memungkinkan karier jangka panjang di Jepang.",
+      "videoTitle": "Panduan Lengkap Tokutei Ginou 2",
+      "videoSubtitle": "Pahami keuntungan dan cara mendapatkan Tokutei Ginou 2 dalam 3 menit",
+      "benefit1Title": "Bisa Membawa Keluarga",
+      "benefit1Desc": "Anda bisa tinggal bersama pasangan dan anak-anak di Jepang",
+      "benefit2Title": "Perpanjangan Visa Tanpa Batas",
+      "benefit2Desc": "Tidak ada batas perpanjangan, Anda bisa bekerja di Jepang dalam jangka panjang",
+      "benefit3Title": "Peningkatan Karier",
+      "benefit3Desc": "Peluang menjadi manajer dan kenaikan gaji"
+    },
+    "sectors": {
+      "badge": "Belajar per Industri",
+      "title": "Tersedia untuk 11 Industri",
+      "description": "Pilih industri yang ingin Anda pelajari",
+      "agriculture": "Pertanian",
+      "livestock": "Peternakan",
+      "fishery": "Perikanan",
+      "construction": "Konstruksi",
+      "shipbuilding": "Pembuatan Kapal",
+      "automobile": "Perawatan Mobil",
+      "aviation": "Penerbangan",
+      "accommodation": "Perhotelan",
+      "foodManufacturing": "Manufaktur Makanan",
+      "foodService": "Restoran",
+      "nursing": "Keperawatan",
+      "comingSoon": "Segera Hadir"
+    },
+    "learningStyles": {
+      "title": "3 Gaya Belajar",
+      "videoTitle": "Belajar Video",
+      "videoDesc": "Penjelasan mudah dipahami dengan slide dan suara AI. Atur kecepatan dan subtitle sesuai keinginan Anda.",
+      "audioTitle": "Belajar Audio",
+      "audioDesc": "Putar di latar belakang saat bekerja atau perjalanan. Tersedia offline.",
+      "textTitle": "Belajar Teks",
+      "textDesc": "Periksa poin-poin penting dalam teks. Baca dengan teliti untuk pemahaman lebih dalam."
+    },
+    "features": {
+      "title": "Fitur Sugu-Study",
+      "multiLanguageTitle": "Tersedia dalam 4 Bahasa",
+      "multiLanguageDesc": "Tersedia dalam bahasa Jepang, Vietnam, Indonesia, dan Inggris. Belajar dalam bahasa ibu Anda.",
+      "offlineTitle": "Belajar Offline",
+      "offlineDesc": "Dengan dukungan PWA, Anda bisa belajar tanpa internet.",
+      "gamificationTitle": "Gamifikasi",
+      "gamificationDesc": "Belajar menyenangkan dengan badge dan peringkat. Tingkatkan motivasi Anda.",
+      "referralTitle": "Bonus Referral",
+      "referralDesc": "Undang teman dan dapatkan 7 hari bebas iklan untuk keduanya."
+    },
+    "tiers": {
+      "title": "Fitur Bertahap",
+      "tier1": "Tier 1 - Tamu",
+      "tier1Desc": "Hanya registrasi email",
+      "tier1Feature1": "Kuliah video",
+      "tier1Feature2": "Podcast audio dasar",
+      "tier2": "Tier 2 - Pelajar",
+      "tier2Desc": "Registrasi lokasi & pekerjaan",
+      "tier2Feature1": "Riwayat belajar",
+      "tier2Feature2": "Sistem badge",
+      "tier2Feature3": "Sistem referral",
+      "tier3": "Tier 3 - Terverifikasi",
+      "tier3Desc": "Verifikasi identitas lengkap",
+      "tier3Feature1": "Simulasi CBT",
+      "tier3Feature2": "Sertifikat kelulusan",
+      "tier3Feature3": "Rekrut oleh perusahaan"
+    },
+    "cta": {
+      "badge": "Persiapan Ujian Tokutei Ginou 2",
+      "title": "Mulai Gratis Sekarang",
+      "description": "Registrasi mudah hanya dengan email. Coba konten gratis kami terlebih dahulu.",
+      "buttonPreview": "Lihat Konten",
+      "buttonSignup": "Daftar Gratis"
+    },
+    "footer": {
+      "tagline": "Platform Belajar untuk Pekerja Asing di Jepang",
+      "specialist": "Situs Khusus Persiapan Ujian Tokutei Ginou 2",
+      "login": "Masuk",
+      "signup": "Daftar",
+      "content": "Konten",
+      "copyright": "© 2024 Sugu-Study. All rights reserved."
+    }
+  },
+  "home": {
+    "welcome": "Selamat datang, {name}",
+    "continueStudy": "Lanjutkan belajar",
+    "recommendedCourses": "Kursus yang direkomendasikan",
+    "yourProgress": "Kemajuan Anda",
+    "recentBadges": "Lencana terbaru"
+  },
+  "tier": {
+    "level1": "Tamu",
+    "level2": "Pelajar",
+    "level3": "Terverifikasi",
+    "upgrade": "Tingkatkan",
+    "upgradeNow": "Tingkatkan sekarang",
+    "upgradeMessage": "Silakan tingkatkan akun Anda untuk mengakses konten ini"
+  },
+  "auth": {
+    "login": "Masuk",
+    "signup": "Daftar",
+    "logout": "Keluar",
+    "email": "Email",
+    "password": "Kata sandi",
+    "fullName": "Nama lengkap",
+    "nationality": "Kewarganegaraan"
+  },
+  "learning": {
+    "video": "Video",
+    "audio": "Audio",
+    "text": "Teks",
+    "completed": "Selesai",
+    "inProgress": "Sedang belajar",
+    "notStarted": "Belum dimulai",
+    "offlineAvailable": "Tersedia offline"
+  },
+  "exam": {
+    "drill": "Latihan",
+    "simulation": "Simulasi ujian",
+    "startExam": "Mulai ujian",
+    "question": "Pertanyaan",
+    "of": "/",
+    "timeRemaining": "Waktu tersisa",
+    "nextQuestion": "Pertanyaan berikutnya",
+    "previousQuestion": "Pertanyaan sebelumnya",
+    "flagQuestion": "Tandai",
+    "submitExam": "Selesaikan ujian",
+    "score": "Nilai",
+    "correct": "Benar",
+    "incorrect": "Salah"
+  },
+  "profile": {
+    "myProfile": "Profil saya",
+    "editProfile": "Edit profil",
+    "prefecture": "Prefektur",
+    "currentJob": "Pekerjaan saat ini",
+    "snsAccounts": "Akun media sosial",
+    "referralCode": "Kode referral",
+    "inviteFriends": "Undang teman"
+  },
+  "kyc": {
+    "title": "Verifikasi identitas",
+    "uploadResidenceCard": "Unggah kartu residence",
+    "frontSide": "Sisi depan",
+    "backSide": "Sisi belakang",
+    "driversLicense": "SIM",
+    "hasLicense": "Saya memiliki SIM",
+    "noLicense": "Saya tidak memiliki SIM",
+    "pending": "Sedang diproses",
+    "verified": "Terverifikasi",
+    "rejected": "Ditolak"
+  }
+}

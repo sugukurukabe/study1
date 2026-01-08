@@ -1,0 +1,175 @@
+{
+  "common": {
+    "appName": "Sugu-Study",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit"
+  },
+  "landing": {
+    "badge1": "Specified Skilled Worker 2 Specialist",
+    "badge2": "Learning Platform for Foreign Workers in Japan",
+    "heroTitle": "Sugu-Study",
+    "heroSubtitle": "Pass the Tokutei Ginou 2 Exam!",
+    "heroDescription": "Learn anytime, anywhere, at your own pace. Efficient exam preparation with video, audio, and text.",
+    "ctaPreview": "View Free Content",
+    "ctaSignup": "Sign Up Free Now",
+    "feature1": "Start learning for free",
+    "feature2": "Available in 4 languages",
+    "feature3": "Offline learning available",
+    "videoSection": {
+      "badge": "Video Explanation",
+      "title": "What is Tokutei Ginou 2?",
+      "description": "Tokutei Ginou 2 is a residence status for foreign workers with advanced skills. You can bring your family and renew indefinitely, enabling long-term career building in Japan.",
+      "videoTitle": "Complete Guide to Tokutei Ginou 2",
+      "videoSubtitle": "Understand the benefits and how to obtain Tokutei Ginou 2 in 3 minutes",
+      "benefit1Title": "Bring Your Family",
+      "benefit1Desc": "You can live with your spouse and children in Japan",
+      "benefit2Title": "No Renewal Limits",
+      "benefit2Desc": "No limit on renewals, work in Japan long-term",
+      "benefit3Title": "Career Advancement",
+      "benefit3Desc": "Path to management positions and salary increases"
+    },
+    "sectors": {
+      "badge": "Industry-Specific Learning",
+      "title": "Available for 11 Industries",
+      "description": "Choose the industry you want to study",
+      "agriculture": "Agriculture",
+      "livestock": "Livestock",
+      "fishery": "Fishery",
+      "construction": "Construction",
+      "shipbuilding": "Shipbuilding",
+      "automobile": "Automobile",
+      "aviation": "Aviation",
+      "accommodation": "Accommodation",
+      "foodManufacturing": "Food Manufacturing",
+      "foodService": "Food Service",
+      "nursing": "Nursing Care",
+      "comingSoon": "Coming Soon"
+    },
+    "learningStyles": {
+      "title": "3 Learning Styles",
+      "videoTitle": "Video Learning",
+      "videoDesc": "Easy-to-understand explanations with slides and AI voice. Adjust speed and subtitles at your own pace.",
+      "audioTitle": "Audio Learning",
+      "audioDesc": "Play in background during commute or work. Available offline.",
+      "textTitle": "Text Learning",
+      "textDesc": "Check important points in text. Read carefully for deeper understanding."
+    },
+    "features": {
+      "title": "Sugu-Study Features",
+      "multiLanguageTitle": "4 Languages Available",
+      "multiLanguageDesc": "Available in Japanese, Vietnamese, Indonesian, and English. Learn in your native language.",
+      "offlineTitle": "Offline Learning",
+      "offlineDesc": "With PWA support, you can continue learning without internet.",
+      "gamificationTitle": "Gamification",
+      "gamificationDesc": "Make learning fun with badges and rankings. Boost your motivation to continue.",
+      "referralTitle": "Referral Bonus",
+      "referralDesc": "Invite friends and both get 7 days ad-free."
+    },
+    "tiers": {
+      "title": "Progressive Features",
+      "tier1": "Tier 1 - Guest",
+      "tier1Desc": "Email registration only",
+      "tier1Feature1": "Video lectures",
+      "tier1Feature2": "Basic audio podcasts",
+      "tier2": "Tier 2 - Learner",
+      "tier2Desc": "Location & job registration",
+      "tier2Feature1": "Learning history",
+      "tier2Feature2": "Badge system",
+      "tier2Feature3": "Referral system",
+      "tier3": "Tier 3 - Verified",
+      "tier3Desc": "Identity verification complete",
+      "tier3Feature1": "CBT simulation",
+      "tier3Feature2": "Certificate issuance",
+      "tier3Feature3": "Company recruitment"
+    },
+    "cta": {
+      "badge": "Tokutei Ginou 2 Exam Preparation",
+      "title": "Start Free Today",
+      "description": "Easy registration with just email. Try our free content first.",
+      "buttonPreview": "View Content",
+      "buttonSignup": "Sign Up Free"
+    },
+    "footer": {
+      "tagline": "Learning Platform for Foreign Workers in Japan",
+      "specialist": "Specialized Site for Tokutei Ginou 2 Exam Preparation",
+      "login": "Login",
+      "signup": "Sign Up",
+      "content": "Content",
+      "copyright": "© 2024 Sugu-Study. All rights reserved."
+    }
+  },
+  "home": {
+    "welcome": "Welcome, {name}",
+    "continueStudy": "Continue learning",
+    "recommendedCourses": "Recommended courses",
+    "yourProgress": "Your progress",
+    "recentBadges": "Recent badges"
+  },
+  "tier": {
+    "level1": "Guest",
+    "level2": "Learner",
+    "level3": "Verified",
+    "upgrade": "Upgrade",
+    "upgradeNow": "Upgrade now",
+    "upgradeMessage": "Please upgrade your account to access this content"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign up",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full name",
+    "nationality": "Nationality"
+  },
+  "learning": {
+    "video": "Video",
+    "audio": "Audio",
+    "text": "Text",
+    "completed": "Completed",
+    "inProgress": "In progress",
+    "notStarted": "Not started",
+    "offlineAvailable": "Available offline"
+  },
+  "exam": {
+    "drill": "Drill practice",
+    "simulation": "Exam simulation",
+    "startExam": "Start exam",
+    "question": "Question",
+    "of": "of",
+    "timeRemaining": "Time remaining",
+    "nextQuestion": "Next question",
+    "previousQuestion": "Previous question",
+    "flagQuestion": "Flag",
+    "submitExam": "Submit exam",
+    "score": "Score",
+    "correct": "Correct",
+    "incorrect": "Incorrect"
+  },
+  "profile": {
+    "myProfile": "My profile",
+    "editProfile": "Edit profile",
+    "prefecture": "Prefecture",
+    "currentJob": "Current job",
+    "snsAccounts": "Social media accounts",
+    "referralCode": "Referral code",
+    "inviteFriends": "Invite friends"
+  },
+  "kyc": {
+    "title": "Identity verification",
+    "uploadResidenceCard": "Upload residence card",
+    "frontSide": "Front side",
+    "backSide": "Back side",
+    "driversLicense": "Driver's license",
+    "hasLicense": "I have a driver's license",
+    "noLicense": "I don't have a driver's license",
+    "pending": "Pending",
+    "verified": "Verified",
+    "rejected": "Rejected"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "common": {
+    "appName": "Sugu-Study",
+    "loading": "Đang tải...",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "continue": "Tiếp tục",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "submit": "Gửi"
+  },
+  "landing": {
+    "badge1": "Chuyên Tokutei Ginou 2",
+    "badge2": "Nền tảng học tập cho người lao động nước ngoài tại Nhật Bản",
+    "heroTitle": "Sugu-Study",
+    "heroSubtitle": "Đỗ kỳ thi Tokutei Ginou 2!",
+    "heroDescription": "Học mọi lúc, mọi nơi, theo tốc độ của bạn. Ôn thi hiệu quả với video, audio và văn bản.",
+    "ctaPreview": "Xem nội dung miễn phí",
+    "ctaSignup": "Đăng ký miễn phí ngay",
+    "feature1": "Bắt đầu học miễn phí",
+    "feature2": "Có sẵn 4 ngôn ngữ",
+    "feature3": "Học ngoại tuyến có sẵn",
+    "videoSection": {
+      "badge": "Giải thích bằng video",
+      "title": "Tokutei Ginou 2 là gì?",
+      "description": "Tokutei Ginou 2 là tư cách lưu trú dành cho lao động nước ngoài có kỹ năng cao. Bạn có thể mang theo gia đình và gia hạn không giới hạn, cho phép xây dựng sự nghiệp lâu dài tại Nhật Bản.",
+      "videoTitle": "Hướng dẫn đầy đủ về Tokutei Ginou 2",
+      "videoSubtitle": "Hiểu lợi ích và cách đạt được Tokutei Ginou 2 trong 3 phút",
+      "benefit1Title": "Mang theo gia đình",
+      "benefit1Desc": "Bạn có thể sống cùng vợ/chồng và con cái tại Nhật Bản",
+      "benefit2Title": "Không giới hạn gia hạn",
+      "benefit2Desc": "Không giới hạn số lần gia hạn, làm việc lâu dài tại Nhật Bản",
+      "benefit3Title": "Thăng tiến sự nghiệp",
+      "benefit3Desc": "Cơ hội trở thành quản lý và tăng lương"
+    },
+    "sectors": {
+      "badge": "Học theo ngành",
+      "title": "Có sẵn cho 11 ngành",
+      "description": "Chọn ngành bạn muốn học",
+      "agriculture": "Nông nghiệp",
+      "livestock": "Chăn nuôi",
+      "fishery": "Thủy sản",
+      "construction": "Xây dựng",
+      "shipbuilding": "Đóng tàu",
+      "automobile": "Ô tô",
+      "aviation": "Hàng không",
+      "accommodation": "Khách sạn",
+      "foodManufacturing": "Chế biến thực phẩm",
+      "foodService": "Nhà hàng",
+      "nursing": "Điều dưỡng",
+      "comingSoon": "Sắp ra mắt"
+    },
+    "learningStyles": {
+      "title": "3 phong cách học",
+      "videoTitle": "Học bằng video",
+      "videoDesc": "Giải thích dễ hiểu với slide và giọng AI. Điều chỉnh tốc độ và phụ đề theo ý bạn.",
+      "audioTitle": "Học bằng audio",
+      "audioDesc": "Phát nền trong khi đi làm hoặc làm việc. Có sẵn ngoại tuyến.",
+      "textTitle": "Học bằng văn bản",
+      "textDesc": "Kiểm tra các điểm quan trọng trong văn bản. Đọc kỹ để hiểu sâu hơn."
+    },
+    "features": {
+      "title": "Tính năng Sugu-Study",
+      "multiLanguageTitle": "4 ngôn ngữ có sẵn",
+      "multiLanguageDesc": "Có sẵn bằng tiếng Nhật, Việt, Indonesia và Anh. Học bằng ngôn ngữ mẹ đẻ của bạn.",
+      "offlineTitle": "Học ngoại tuyến",
+      "offlineDesc": "Với hỗ trợ PWA, bạn có thể tiếp tục học không cần internet.",
+      "gamificationTitle": "Game hóa",
+      "gamificationDesc": "Học vui với huy hiệu và bảng xếp hạng. Tăng động lực học tập.",
+      "referralTitle": "Thưởng giới thiệu",
+      "referralDesc": "Mời bạn bè và cả hai được 7 ngày không quảng cáo."
+    },
+    "tiers": {
+      "title": "Tính năng theo cấp độ",
+      "tier1": "Cấp 1 - Khách",
+      "tier1Desc": "Chỉ đăng ký email",
+      "tier1Feature1": "Video bài giảng",
+      "tier1Feature2": "Podcast audio cơ bản",
+      "tier2": "Cấp 2 - Học viên",
+      "tier2Desc": "Đăng ký địa điểm & công việc",
+      "tier2Feature1": "Lịch sử học tập",
+      "tier2Feature2": "Hệ thống huy hiệu",
+      "tier2Feature3": "Hệ thống giới thiệu",
+      "tier3": "Cấp 3 - Đã xác minh",
+      "tier3Desc": "Hoàn thành xác minh danh tính",
+      "tier3Feature1": "Mô phỏng CBT",
+      "tier3Feature2": "Cấp chứng chỉ",
+      "tier3Feature3": "Tuyển dụng doanh nghiệp"
+    },
+    "cta": {
+      "badge": "Ôn thi Tokutei Ginou 2",
+      "title": "Bắt đầu miễn phí ngay hôm nay",
+      "description": "Đăng ký dễ dàng chỉ với email. Thử nội dung miễn phí của chúng tôi trước.",
+      "buttonPreview": "Xem nội dung",
+      "buttonSignup": "Đăng ký miễn phí"
+    },
+    "footer": {
+      "tagline": "Nền tảng học tập cho người lao động nước ngoài tại Nhật Bản",
+      "specialist": "Trang web chuyên về ôn thi Tokutei Ginou 2",
+      "login": "Đăng nhập",
+      "signup": "Đăng ký",
+      "content": "Nội dung",
+      "copyright": "© 2024 Sugu-Study. All rights reserved."
+    }
+  },
+  "home": {
+    "welcome": "Xin chào, {name}",
+    "continueStudy": "Tiếp tục học",
+    "recommendedCourses": "Khóa học đề xuất",
+    "yourProgress": "Tiến độ của bạn",
+    "recentBadges": "Huy hiệu mới đạt được"
+  },
+  "tier": {
+    "level1": "Khách",
+    "level2": "Học viên",
+    "level3": "Đã xác minh",
+    "upgrade": "Nâng cấp",
+    "upgradeNow": "Nâng cấp ngay",
+    "upgradeMessage": "Vui lòng nâng cấp tài khoản để truy cập nội dung này"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "signup": "Đăng ký",
+    "logout": "Đăng xuất",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "fullName": "Họ và tên",
+    "nationality": "Quốc tịch"
+  },
+  "learning": {
+    "video": "Video",
+    "audio": "Âm thanh",
+    "text": "Văn bản",
+    "completed": "Hoàn thành",
+    "inProgress": "Đang học",
+    "notStarted": "Chưa bắt đầu",
+    "offlineAvailable": "Có sẵn ngoại tuyến"
+  },
+  "exam": {
+    "drill": "Luyện tập",
+    "simulation": "Mô phỏng thực tế",
+    "startExam": "Bắt đầu thi",
+    "question": "Câu hỏi",
+    "of": "/",
+    "timeRemaining": "Thời gian còn lại",
+    "nextQuestion": "Câu tiếp theo",
+    "previousQuestion": "Câu trước",
+    "flagQuestion": "Đánh dấu",
+    "submitExam": "Nộp bài",
+    "score": "Điểm",
+    "correct": "Đúng",
+    "incorrect": "Sai"
+  },
+  "profile": {
+    "myProfile": "Hồ sơ của tôi",
+    "editProfile": "Chỉnh sửa hồ sơ",
+    "prefecture": "Tỉnh/Thành phố",
+    "currentJob": "Công việc hiện tại",
+    "snsAccounts": "Tài khoản mạng xã hội",
+    "referralCode": "Mã giới thiệu",
+    "inviteFriends": "Mời bạn bè"
+  },
+  "kyc": {
+    "title": "Xác minh danh tính",
+    "uploadResidenceCard": "Tải lên thẻ cư trú",
+    "frontSide": "Mặt trước",
+    "backSide": "Mặt sau",
+    "driversLicense": "Bằng lái xe",
+    "hasLicense": "Tôi có bằng lái xe",
+    "noLicense": "Tôi không có bằng lái xe",
+    "pending": "Đang xử lý",
+    "verified": "Đã xác minh",
+    "rejected": "Bị từ chối"
+  }
+}
