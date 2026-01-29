@@ -11,7 +11,15 @@ interface LessonTabsProps {
     id: string
     title_ja: string
     cloudflare_video_id: string | null
+    cloudflare_video_id_ja?: string | null
+    cloudflare_video_id_id?: string | null
+    cloudflare_video_id_vi?: string | null
+    cloudflare_video_id_en?: string | null
     audio_storage_path: string | null
+    audio_storage_path_ja?: string | null
+    audio_storage_path_id?: string | null
+    audio_storage_path_vi?: string | null
+    audio_storage_path_en?: string | null
     content: any
   }
   onProgress: (time: number, type: 'video' | 'audio') => void
@@ -19,6 +27,27 @@ interface LessonTabsProps {
 }
 
 export default function LessonTabs({ lesson, onProgress, startPosition = 0 }: LessonTabsProps) {
+  // 言語別動画IDを集約
+  const videoIds = {
+    ja: lesson.cloudflare_video_id_ja || lesson.cloudflare_video_id || undefined,
+    id: lesson.cloudflare_video_id_id || undefined,
+    vi: lesson.cloudflare_video_id_vi || undefined,
+    en: lesson.cloudflare_video_id_en || undefined,
+  }
+
+  // 言語別音声パスを集約
+  const audioPaths = {
+    ja: lesson.audio_storage_path_ja || lesson.audio_storage_path || undefined,
+    id: lesson.audio_storage_path_id || undefined,
+    vi: lesson.audio_storage_path_vi || undefined,
+    en: lesson.audio_storage_path_en || undefined,
+  }
+
+  // 少なくとも1つの動画IDが存在するか
+  const hasVideo = Object.values(videoIds).some(id => !!id)
+  // 少なくとも1つの音声パスが存在するか
+  const hasAudio = Object.values(audioPaths).some(path => !!path)
+
   return (
     <Tabs defaultValue="video" className="w-full">
       <TabsList className="grid w-full grid-cols-3">
@@ -37,9 +66,9 @@ export default function LessonTabs({ lesson, onProgress, startPosition = 0 }: Le
       </TabsList>
 
       <TabsContent value="video" className="mt-6">
-        {lesson.cloudflare_video_id ? (
+        {hasVideo ? (
           <VideoPlayer
-            cloudflareVideoId={lesson.cloudflare_video_id}
+            videoIds={videoIds}
             onProgress={(time) => onProgress(time, 'video')}
             startTime={startPosition}
           />
@@ -53,10 +82,10 @@ export default function LessonTabs({ lesson, onProgress, startPosition = 0 }: Le
       </TabsContent>
 
       <TabsContent value="audio" className="mt-6">
-        {lesson.audio_storage_path ? (
+        {hasAudio ? (
           <AudioPlayer
             lessonId={lesson.id}
-            audioUrl={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/audio/${lesson.audio_storage_path}`}
+            audioUrl={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/audio/${audioPaths.ja || audioPaths.id || audioPaths.vi || audioPaths.en}`}
             title={lesson.title_ja}
             onProgress={(time) => onProgress(time, 'audio')}
             startTime={startPosition}

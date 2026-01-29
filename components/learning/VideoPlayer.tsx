@@ -3,18 +3,30 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Play, Pause, Volume2, VolumeX, Maximize, Settings } from 'lucide-react'
+import { useParams } from 'next/navigation'
 
 interface VideoPlayerProps {
-  cloudflareVideoId: string
+  videoIds: {
+    ja?: string
+    id?: string
+    vi?: string
+    en?: string
+  }
   onProgress?: (time: number) => void
   startTime?: number
 }
 
 export default function VideoPlayer({
-  cloudflareVideoId,
+  videoIds,
   onProgress,
   startTime = 0,
 }: VideoPlayerProps) {
+  const params = useParams()
+  const currentLocale = (params.locale as string) || 'ja'
+  
+  // 現在の言語の動画IDを取得、なければ日本語版にフォールバック
+  const [selectedLanguage, setSelectedLanguage] = useState(currentLocale)
+  const cloudflareVideoId = videoIds[selectedLanguage as keyof typeof videoIds] || videoIds.ja || Object.values(videoIds)[0] || ''
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
@@ -92,13 +104,63 @@ export default function VideoPlayer({
   // Cloudflare Stream のビデオURL
   const videoUrl = `https://customer-${process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID}.cloudflarestream.com/${cloudflareVideoId}/manifest/video.m3u8`
 
+  // 利用可能な言語のリスト
+  const availableLanguages = [
+    { code: 'ja', name: '日本語', flag: '🇯🇵', available: !!videoIds.ja },
+    { code: 'id', name: 'Indonesia', flag: '🇮🇩', available: !!videoIds.id },
+    { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳', available: !!videoIds.vi },
+    { code: 'en', name: 'English', flag: '🇺🇸', available: !!videoIds.en },
+  ].filter(lang => lang.available)
+
+  const handleLanguageChange = (langCode: string) => {
+    const currentTime = videoRef.current?.currentTime || 0
+    setSelectedLanguage(langCode)
+    // 動画を切り替えた後、同じ位置から再生
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = currentTime
+        if (isPlaying) {
+          videoRef.current.play()
+        }
+      }
+    }, 100)
+  }
+
   return (
     <div className="relative bg-black rounded-lg overflow-hidden">
+      {/* 言語切り替えボタン（動画上部） */}
+      {availableLanguages.length > 1 && (
+        <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/60 to-transparent p-3">
+          <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+            {availableLanguages.map((lang) => (
+              <Button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                size="sm"
+                variant={selectedLanguage === lang.code ? 'default' : 'secondary'}
+                className={`
+                  min-w-[100px] h-10 text-sm font-medium transition-all
+                  ${selectedLanguage === lang.code 
+                    ? 'bg-white text-black hover:bg-gray-200 shadow-lg scale-105' 
+                    : 'bg-black/50 text-white hover:bg-black/70 border border-white/30'
+                  }
+                `}
+              >
+                <span className="mr-1.5 text-base">{lang.flag}</span>
+                <span className="hidden sm:inline">{lang.name}</span>
+                <span className="sm:hidden">{lang.code.toUpperCase()}</span>
+              </Button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <video
         ref={videoRef}
         src={videoUrl}
         className="w-full aspect-video"
         onClick={togglePlay}
+        key={cloudflareVideoId}
       >
         <source src={videoUrl} type="application/x-mpegURL" />
         お使いのブラウザは動画タグに対応していません。
