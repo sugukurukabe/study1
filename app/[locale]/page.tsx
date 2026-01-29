@@ -17,22 +17,22 @@ const VIDEO_DATA: Record<string, {
   subtitle: string
 }> = {
   ja: {
-    videoId: '54ed79e74656e84f7f19e4311be4530b',
+    videoId: 'f2f7a67b989a45dd6b850b8462623c40',
     title: '特定技能2号 完全ガイド',
     subtitle: '3分でわかる特定技能2号のメリットと取得方法',
   },
   id: {
-    videoId: 'ee20949a41588f8317b0226c09a3d676',
+    videoId: 'fdf5466f16a824fe1fce0ddf6996a99d',
     title: 'Panduan Lengkap Tokutei Ginou 2',
     subtitle: 'Pahami keuntungan dan cara mendapatkan Tokutei Ginou 2 dalam 3 menit',
   },
   vi: {
-    videoId: '54ed79e74656e84f7f19e4311be4530b',
+    videoId: 'fdf5466f16a824fe1fce0ddf6996a99d',
     title: 'Hướng dẫn đầy đủ về Tokutei Ginou 2',
     subtitle: 'Tìm hiểu lợi ích và cách lấy Tokutei Ginou 2 trong 3 phút',
   },
   en: {
-    videoId: '54ed79e74656e84f7f19e4311be4530b',
+    videoId: 'f2f7a67b989a45dd6b850b8462623c40',
     title: 'Complete Guide to Tokutei Ginou 2',
     subtitle: 'Understand the benefits and how to obtain Tokutei Ginou 2 in 3 minutes',
   },
