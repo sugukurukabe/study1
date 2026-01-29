@@ -2,7 +2,7 @@
 -- 実行日: 2026-01-29
 
 -- 畜産業セクターを作成
-INSERT INTO sectors (id, name_ja, name_id, name_vi, name_en, description_ja, icon, color, display_order)
+INSERT INTO sectors (id, name_ja, name_id, name_vi, name_en, description_ja, icon, color, order_index)
 VALUES (
   'livestock',
   '畜産業',
@@ -22,10 +22,10 @@ ON CONFLICT (id) DO UPDATE SET
   description_ja = EXCLUDED.description_ja,
   icon = EXCLUDED.icon,
   color = EXCLUDED.color,
-  display_order = EXCLUDED.display_order;
+  order_index = EXCLUDED.order_index;
 
 -- 第一章: 畜産の特徴
-INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, display_order)
+INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, order_index)
 VALUES 
   ('livestock-ch1', 'livestock', '第一章　畜産の特徴', 'Bab 1: Karakteristik Peternakan', 'Chương 1: Đặc điểm chăn nuôi', 'Chapter 1: Characteristics of Livestock', '畜産業の各分野の特徴を学習', 1)
 ON CONFLICT (id) DO UPDATE SET
@@ -34,10 +34,10 @@ ON CONFLICT (id) DO UPDATE SET
   name_vi = EXCLUDED.name_vi,
   name_en = EXCLUDED.name_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order;
+  order_index = EXCLUDED.order_index;
 
 -- 第二章: 家畜と飼料に関する基礎知識
-INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, display_order)
+INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, order_index)
 VALUES 
   ('livestock-ch2', 'livestock', '第二章　家畜と飼料に関する基礎知識', 'Bab 2: Pengetahuan Dasar tentang Ternak dan Pakan', 'Chương 2: Kiến thức cơ bản về gia súc và thức ăn', 'Chapter 2: Basic Knowledge of Livestock and Feed', '家畜の種類と飼料の基礎知識', 2)
 ON CONFLICT (id) DO UPDATE SET
@@ -46,10 +46,10 @@ ON CONFLICT (id) DO UPDATE SET
   name_vi = EXCLUDED.name_vi,
   name_en = EXCLUDED.name_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order;
+  order_index = EXCLUDED.order_index;
 
 -- 第三章: 日常の家畜の管理作業
-INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, display_order)
+INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, order_index)
 VALUES 
   ('livestock-ch3', 'livestock', '第三章　日常の家畜の管理作業', 'Bab 3: Pekerjaan Manajemen Harian Ternak', 'Chương 3: Công việc quản lý gia súc hàng ngày', 'Chapter 3: Daily Livestock Management Work', '農場の衛生管理と日常作業', 3)
 ON CONFLICT (id) DO UPDATE SET
@@ -58,10 +58,10 @@ ON CONFLICT (id) DO UPDATE SET
   name_vi = EXCLUDED.name_vi,
   name_en = EXCLUDED.name_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order;
+  order_index = EXCLUDED.order_index;
 
 -- 第四章: 追加学習
-INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, display_order)
+INSERT INTO categories (id, sector_id, name_ja, name_id, name_vi, name_en, description_ja, order_index)
 VALUES 
   ('livestock-ch4', 'livestock', '第四章　追加学習', 'Bab 4: Pembelajaran Tambahan', 'Chương 4: Học bổ sung', 'Chapter 4: Additional Learning', '実技試験対策と専門用語集', 4)
 ON CONFLICT (id) DO UPDATE SET
@@ -70,7 +70,7 @@ ON CONFLICT (id) DO UPDATE SET
   name_vi = EXCLUDED.name_vi,
   name_en = EXCLUDED.name_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order;
+  order_index = EXCLUDED.order_index;
 
 -- ========================================
 -- 第一章のレッスン
@@ -84,7 +84,7 @@ INSERT INTO lessons (
   title_vi, 
   title_en,
   description_ja,
-  display_order,
+  order_index,
   duration_minutes,
   tier_required
 )
@@ -100,7 +100,7 @@ ON CONFLICT (id) DO UPDATE SET
   title_vi = EXCLUDED.title_vi,
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order,
+  order_index = EXCLUDED.order_index,
   duration_minutes = EXCLUDED.duration_minutes,
   tier_required = EXCLUDED.tier_required;
 
@@ -116,7 +116,7 @@ INSERT INTO lessons (
   title_vi, 
   title_en,
   description_ja,
-  display_order,
+  order_index,
   duration_minutes,
   tier_required
 )
@@ -133,7 +133,7 @@ ON CONFLICT (id) DO UPDATE SET
   title_vi = EXCLUDED.title_vi,
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order,
+  order_index = EXCLUDED.order_index,
   duration_minutes = EXCLUDED.duration_minutes,
   tier_required = EXCLUDED.tier_required;
 
@@ -149,7 +149,7 @@ INSERT INTO lessons (
   title_vi, 
   title_en,
   description_ja,
-  display_order,
+  order_index,
   duration_minutes,
   tier_required
 )
@@ -166,7 +166,7 @@ ON CONFLICT (id) DO UPDATE SET
   title_vi = EXCLUDED.title_vi,
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order,
+  order_index = EXCLUDED.order_index,
   duration_minutes = EXCLUDED.duration_minutes,
   tier_required = EXCLUDED.tier_required;
 
@@ -182,7 +182,7 @@ INSERT INTO lessons (
   title_vi, 
   title_en,
   description_ja,
-  display_order,
+  order_index,
   duration_minutes,
   tier_required
 )
@@ -195,17 +195,17 @@ ON CONFLICT (id) DO UPDATE SET
   title_vi = EXCLUDED.title_vi,
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
-  display_order = EXCLUDED.display_order,
+  order_index = EXCLUDED.order_index,
   duration_minutes = EXCLUDED.duration_minutes,
   tier_required = EXCLUDED.tier_required;
 
 -- 確認クエリ
 SELECT 
   c.name_ja as category,
-  l.display_order,
+  l.order_index,
   l.title_ja,
   l.duration_minutes
 FROM lessons l
 JOIN categories c ON l.category_id = c.id
 WHERE c.sector_id = 'livestock'
-ORDER BY c.display_order, l.display_order;
+ORDER BY c.order_index, l.order_index;
