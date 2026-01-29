@@ -1,11 +1,11 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/Sugu-Study/sugu-study:latest', '.']
+    args: ['build', '-t', 'gcr.io/kirim3/sugu-study:latest', '.']
 
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/Sugu-Study/sugu-study:latest']
+    args: ['push', 'gcr.io/kirim3/sugu-study:latest']
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -15,12 +15,26 @@ steps:
       - 'deploy'
       - 'sugu-study'
       - '--image'
-      - 'gcr.io/Sugu-Study/sugu-study:latest'
+      - 'gcr.io/kirim3/sugu-study:latest'
       - '--region'
       - 'asia-northeast1'
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
+      - '--set-env-vars'
+      - 'NEXT_PUBLIC_SUPABASE_URL=https://tvvvwyrtakruwaylwmyb.supabase.co,NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID=933b96ef9d4f85409bc15a4935369fcf'
+      - '--memory'
+      - '2Gi'
+      - '--cpu'
+      - '2'
+      - '--max-instances'
+      - '10'
+      - '--min-instances'
+      - '0'
 
 images:
-  - 'gcr.io/Sugu-Study/sugu-study:latest'
+  - 'gcr.io/kirim3/sugu-study:latest'
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY

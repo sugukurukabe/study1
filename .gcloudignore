@@ -33,3 +33,4 @@ yarn-error.log*
 # Exclude env files (handled by Cloud Run secrets)
 .env*
 !.env.example
+!.env.production
