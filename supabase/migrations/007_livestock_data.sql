@@ -85,15 +85,15 @@ INSERT INTO lessons (
   title_en,
   description_ja,
   order_index,
-  duration_minutes,
-  tier_required
+  duration_seconds,
+  required_tier
 )
 VALUES 
-  ('livestock-ch1-01', 'livestock-ch1', '1. 酪農（乳用牛）', '1. Peternakan Sapi Perah', '1. Chăn nuôi bò sữa', '1. Dairy Farming (Dairy Cattle)', '酪農の特徴と乳用牛の基礎知識', 1, 20, 1),
-  ('livestock-ch1-02', 'livestock-ch1', '2. 牛肉生産（肉用牛）', '2. Produksi Daging Sapi', '2. Sản xuất thịt bò', '2. Beef Production (Beef Cattle)', '肉用牛の特徴と飼養管理', 2, 18, 1),
-  ('livestock-ch1-03', 'livestock-ch1', '3. 養豚', '3. Peternakan Babi', '3. Chăn nuôi lợn', '3. Pig Farming', '養豚の特徴と管理方法', 3, 18, 1),
-  ('livestock-ch1-04', 'livestock-ch1', '4. 養鶏', '4. Peternakan Ayam', '4. Chăn nuôi gà', '4. Poultry Farming', '養鶏の特徴と飼養システム', 4, 18, 1),
-  ('livestock-ch1-05', 'livestock-ch1', '5. その他', '5. Lainnya', '5. Khác', '5. Others', 'その他の畜産（羊、山羊など）', 5, 15, 1)
+  ('livestock-ch1-01', 'livestock-ch1', '1. 酪農（乳用牛）', '1. Peternakan Sapi Perah', '1. Chăn nuôi bò sữa', '1. Dairy Farming (Dairy Cattle)', '酪農の特徴と乳用牛の基礎知識', 1, 1200, 1),
+  ('livestock-ch1-02', 'livestock-ch1', '2. 牛肉生産（肉用牛）', '2. Produksi Daging Sapi', '2. Sản xuất thịt bò', '2. Beef Production (Beef Cattle)', '肉用牛の特徴と飼養管理', 2, 1080, 1),
+  ('livestock-ch1-03', 'livestock-ch1', '3. 養豚', '3. Peternakan Babi', '3. Chăn nuôi lợn', '3. Pig Farming', '養豚の特徴と管理方法', 3, 1080, 1),
+  ('livestock-ch1-04', 'livestock-ch1', '4. 養鶏', '4. Peternakan Ayam', '4. Chăn nuôi gà', '4. Poultry Farming', '養鶏の特徴と飼養システム', 4, 1080, 1),
+  ('livestock-ch1-05', 'livestock-ch1', '5. その他', '5. Lainnya', '5. Khác', '5. Others', 'その他の畜産（羊、山羊など）', 5, 900, 1)
 ON CONFLICT (id) DO UPDATE SET
   title_ja = EXCLUDED.title_ja,
   title_id = EXCLUDED.title_id,
@@ -101,8 +101,8 @@ ON CONFLICT (id) DO UPDATE SET
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
   order_index = EXCLUDED.order_index,
-  duration_minutes = EXCLUDED.duration_minutes,
-  tier_required = EXCLUDED.tier_required;
+  duration_seconds = EXCLUDED.duration_seconds,
+  required_tier = EXCLUDED.required_tier;
 
 -- ========================================
 -- 第二章のレッスン
@@ -117,16 +117,16 @@ INSERT INTO lessons (
   title_en,
   description_ja,
   order_index,
-  duration_minutes,
-  tier_required
+  duration_seconds,
+  required_tier
 )
 VALUES 
-  ('livestock-ch2-01', 'livestock-ch2', '1. 乳用牛', '1. Sapi Perah', '1. Bò sữa', '1. Dairy Cattle', '乳用牛の品種と飼料管理', 1, 22, 1),
-  ('livestock-ch2-02', 'livestock-ch2', '2. 肉用牛', '2. Sapi Potong', '2. Bò thịt', '2. Beef Cattle', '肉用牛の品種と栄養管理', 2, 20, 1),
-  ('livestock-ch2-03', 'livestock-ch2', '3. 豚', '3. Babi', '3. Lợn', '3. Pigs', '豚の品種と飼料の種類', 3, 20, 1),
-  ('livestock-ch2-04a', 'livestock-ch2', '4a. 採卵鶏', '4a. Ayam Petelur', '4a. Gà đẻ trứng', '4a. Layer Chickens', '採卵鶏の品種と飼料管理', 4, 18, 1),
-  ('livestock-ch2-04b', 'livestock-ch2', '4b. 肉用鶏', '4b. Ayam Pedaging', '4b. Gà thịt', '4b. Broiler Chickens', '肉用鶏の品種と栄養要求', 5, 18, 1),
-  ('livestock-ch2-05', 'livestock-ch2', '5. その他', '5. Lainnya', '5. Khác', '5. Others', 'その他の家畜の飼料管理', 6, 15, 1)
+  ('livestock-ch2-01', 'livestock-ch2', '1. 乳用牛', '1. Sapi Perah', '1. Bò sữa', '1. Dairy Cattle', '乳用牛の品種と飼料管理', 1, 1320, 1),
+  ('livestock-ch2-02', 'livestock-ch2', '2. 肉用牛', '2. Sapi Potong', '2. Bò thịt', '2. Beef Cattle', '肉用牛の品種と栄養管理', 2, 1200, 1),
+  ('livestock-ch2-03', 'livestock-ch2', '3. 豚', '3. Babi', '3. Lợn', '3. Pigs', '豚の品種と飼料の種類', 3, 1200, 1),
+  ('livestock-ch2-04a', 'livestock-ch2', '4a. 採卵鶏', '4a. Ayam Petelur', '4a. Gà đẻ trứng', '4a. Layer Chickens', '採卵鶏の品種と飼料管理', 4, 1080, 1),
+  ('livestock-ch2-04b', 'livestock-ch2', '4b. 肉用鶏', '4b. Ayam Pedaging', '4b. Gà thịt', '4b. Broiler Chickens', '肉用鶏の品種と栄養要求', 5, 1080, 1),
+  ('livestock-ch2-05', 'livestock-ch2', '5. その他', '5. Lainnya', '5. Khác', '5. Others', 'その他の家畜の飼料管理', 6, 900, 1)
 ON CONFLICT (id) DO UPDATE SET
   title_ja = EXCLUDED.title_ja,
   title_id = EXCLUDED.title_id,
@@ -134,8 +134,8 @@ ON CONFLICT (id) DO UPDATE SET
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
   order_index = EXCLUDED.order_index,
-  duration_minutes = EXCLUDED.duration_minutes,
-  tier_required = EXCLUDED.tier_required;
+  duration_seconds = EXCLUDED.duration_seconds,
+  required_tier = EXCLUDED.required_tier;
 
 -- ========================================
 -- 第三章のレッスン
@@ -150,16 +150,16 @@ INSERT INTO lessons (
   title_en,
   description_ja,
   order_index,
-  duration_minutes,
-  tier_required
+  duration_seconds,
+  required_tier
 )
 VALUES 
-  ('livestock-ch3-01', 'livestock-ch3', '1. 農場の衛生・安全管理', '1. Manajemen Kebersihan dan Keamanan Peternakan', '1. Quản lý vệ sinh và an toàn trang trại', '1. Farm Hygiene and Safety Management', '農場の衛生管理と安全対策', 1, 25, 1),
-  ('livestock-ch3-02', 'livestock-ch3', '2. 乳用牛', '2. Sapi Perah', '2. Bò sữa', '2. Dairy Cattle', '乳用牛の日常管理作業', 2, 22, 1),
-  ('livestock-ch3-03', 'livestock-ch3', '3. 肉用牛', '3. Sapi Potong', '3. Bò thịt', '3. Beef Cattle', '肉用牛の日常管理作業', 3, 20, 1),
-  ('livestock-ch3-04', 'livestock-ch3', '4. 豚', '4. Babi', '4. Lợn', '4. Pigs', '豚の日常管理作業', 4, 20, 1),
-  ('livestock-ch3-05', 'livestock-ch3', '5. 養鶏', '5. Peternakan Ayam', '5. Chăn nuôi gà', '5. Poultry', '養鶏の日常管理作業', 5, 20, 1),
-  ('livestock-ch3-06', 'livestock-ch3', '6. その他', '6. Lainnya', '6. Khác', '6. Others', 'その他の家畜の管理作業', 6, 15, 1)
+  ('livestock-ch3-01', 'livestock-ch3', '1. 農場の衛生・安全管理', '1. Manajemen Kebersihan dan Keamanan Peternakan', '1. Quản lý vệ sinh và an toàn trang trại', '1. Farm Hygiene and Safety Management', '農場の衛生管理と安全対策', 1, 1500, 1),
+  ('livestock-ch3-02', 'livestock-ch3', '2. 乳用牛', '2. Sapi Perah', '2. Bò sữa', '2. Dairy Cattle', '乳用牛の日常管理作業', 2, 1320, 1),
+  ('livestock-ch3-03', 'livestock-ch3', '3. 肉用牛', '3. Sapi Potong', '3. Bò thịt', '3. Beef Cattle', '肉用牛の日常管理作業', 3, 1200, 1),
+  ('livestock-ch3-04', 'livestock-ch3', '4. 豚', '4. Babi', '4. Lợn', '4. Pigs', '豚の日常管理作業', 4, 1200, 1),
+  ('livestock-ch3-05', 'livestock-ch3', '5. 養鶏', '5. Peternakan Ayam', '5. Chăn nuôi gà', '5. Poultry', '養鶏の日常管理作業', 5, 1200, 1),
+  ('livestock-ch3-06', 'livestock-ch3', '6. その他', '6. Lainnya', '6. Khác', '6. Others', 'その他の家畜の管理作業', 6, 900, 1)
 ON CONFLICT (id) DO UPDATE SET
   title_ja = EXCLUDED.title_ja,
   title_id = EXCLUDED.title_id,
@@ -167,8 +167,8 @@ ON CONFLICT (id) DO UPDATE SET
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
   order_index = EXCLUDED.order_index,
-  duration_minutes = EXCLUDED.duration_minutes,
-  tier_required = EXCLUDED.tier_required;
+  duration_seconds = EXCLUDED.duration_seconds,
+  required_tier = EXCLUDED.required_tier;
 
 -- ========================================
 -- 第四章のレッスン
@@ -183,12 +183,12 @@ INSERT INTO lessons (
   title_en,
   description_ja,
   order_index,
-  duration_minutes,
-  tier_required
+  duration_seconds,
+  required_tier
 )
 VALUES 
-  ('livestock-ch4-01', 'livestock-ch4', '1. 実技試験対策', '1. Persiapan Ujian Praktik', '1. Chuẩn bị thi thực hành', '1. Practical Exam Preparation', '実技試験の内容と対策方法', 1, 30, 1),
-  ('livestock-ch4-02', 'livestock-ch4', '2. 専門用語集', '2. Kamus Istilah Teknis', '2. Từ điển thuật ngữ chuyên môn', '2. Technical Glossary', '畜産業の重要専門用語', 2, 25, 1)
+  ('livestock-ch4-01', 'livestock-ch4', '1. 実技試験対策', '1. Persiapan Ujian Praktik', '1. Chuẩn bị thi thực hành', '1. Practical Exam Preparation', '実技試験の内容と対策方法', 1, 1800, 1),
+  ('livestock-ch4-02', 'livestock-ch4', '2. 専門用語集', '2. Kamus Istilah Teknis', '2. Từ điển thuật ngữ chuyên môn', '2. Technical Glossary', '畜産業の重要専門用語', 2, 1500, 1)
 ON CONFLICT (id) DO UPDATE SET
   title_ja = EXCLUDED.title_ja,
   title_id = EXCLUDED.title_id,
@@ -196,15 +196,15 @@ ON CONFLICT (id) DO UPDATE SET
   title_en = EXCLUDED.title_en,
   description_ja = EXCLUDED.description_ja,
   order_index = EXCLUDED.order_index,
-  duration_minutes = EXCLUDED.duration_minutes,
-  tier_required = EXCLUDED.tier_required;
+  duration_seconds = EXCLUDED.duration_seconds,
+  required_tier = EXCLUDED.required_tier;
 
 -- 確認クエリ
 SELECT 
   c.name_ja as category,
   l.order_index,
   l.title_ja,
-  l.duration_minutes
+  ROUND(l.duration_seconds / 60.0, 1) as duration_minutes
 FROM lessons l
 JOIN categories c ON l.category_id = c.id
 WHERE c.sector_id = 'livestock'
