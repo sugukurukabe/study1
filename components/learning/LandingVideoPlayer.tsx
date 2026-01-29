@@ -19,11 +19,11 @@ export default function LandingVideoPlayer({
   const [error, setError] = useState(false)
 
   // Cloudflare Stream アカウントID
-  const accountId = '7h7i3oj7pv51qq1p'
+  const accountId = '5ec43b375b486a63567718e24c602055'
 
   // サムネイルURL
   const thumbnailUrl = `https://customer-${accountId}.cloudflarestream.com/${videoId}/thumbnails/thumbnail.jpg?time=0s&height=720`
-  
+
   // 動画再生URL
   const videoSrc = `https://customer-${accountId}.cloudflarestream.com/${videoId}/iframe?autoplay=true&poster=${encodeURIComponent(thumbnailUrl)}`
 
@@ -70,7 +70,7 @@ export default function LandingVideoPlayer({
   }
 
   return (
-    <div 
+    <div
       className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 aspect-video max-w-3xl mx-auto cursor-pointer group"
       onClick={handlePlay}
       role="button"
@@ -111,7 +111,7 @@ export default function LandingVideoPlayer({
         <div className="relative">
           {/* グロー効果 */}
           <div className="absolute inset-0 bg-white/20 rounded-full blur-xl animate-pulse" />
-          
+
           {/* 外リング */}
           <div className="w-24 h-24 rounded-full border-2 border-white/30 flex items-center justify-center group-hover:border-white/50 transition-colors">
             <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all group-hover:scale-110">

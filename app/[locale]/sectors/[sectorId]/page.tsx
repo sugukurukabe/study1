@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation'
 import { FadeInUp, ScaleIn, SlideInLeft, SlideInRight } from '@/components/ui/AnimatedSection'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { FloatingElement, ParticleField, GlowBreath } from '@/components/ui/FloatingElement'
-import { motion } from 'framer-motion'
 
 // 業種データ
 const sectorsData: Record<string, {
@@ -118,19 +117,19 @@ const sectorsData: Record<string, {
 }
 
 const colorClasses: Record<string, { bg: string; text: string; border: string; light: string; gradient: string; glow: string }> = {
-    green: { 
-        bg: 'bg-green-600', 
-        text: 'text-green-600', 
-        border: 'border-green-600', 
-        light: 'bg-green-50', 
+    green: {
+        bg: 'bg-green-600',
+        text: 'text-green-600',
+        border: 'border-green-600',
+        light: 'bg-green-50',
         gradient: 'from-green-600 to-emerald-600',
         glow: 'rgba(34, 197, 94, 0.3)'
     },
-    amber: { 
-        bg: 'bg-amber-600', 
-        text: 'text-amber-600', 
-        border: 'border-amber-600', 
-        light: 'bg-amber-50', 
+    amber: {
+        bg: 'bg-amber-600',
+        text: 'text-amber-600',
+        border: 'border-amber-600',
+        light: 'bg-amber-50',
         gradient: 'from-amber-600 to-orange-600',
         glow: 'rgba(245, 158, 11, 0.3)'
     },
@@ -162,7 +161,7 @@ export default async function SectorPage({ params }: PageProps) {
             <div className={`relative bg-gradient-to-r ${colors.gradient} text-white py-20 px-4 overflow-hidden`}>
                 {/* Animated particles */}
                 <ParticleField count={15} className="opacity-20" />
-                
+
                 {/* Floating glow */}
                 <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-white/10 rounded-full blur-2xl animate-pulse delay-500" />
@@ -193,7 +192,7 @@ export default async function SectorPage({ params }: PageProps) {
                 {/* Wave decoration */}
                 <div className="absolute bottom-0 left-0 right-0">
                     <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-                        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f9fafb"/>
+                        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f9fafb" />
                     </svg>
                 </div>
             </div>
@@ -218,8 +217,8 @@ export default async function SectorPage({ params }: PageProps) {
                     {/* Main video card */}
                     <ScaleIn delay={0.2}>
                         <Link href={`/sectors/${sectorId}/intro/overview`}>
-                            <HoverCard 
-                                scale={1.02} 
+                            <HoverCard
+                                scale={1.02}
                                 glowColor={colors.glow}
                                 className="overflow-hidden border-2"
                             >
@@ -381,7 +380,7 @@ export default async function SectorPage({ params }: PageProps) {
                                     href={category.lessonCount > 0 ? `/sectors/${sectorId}/${category.id}` : '#'}
                                     className={category.lessonCount === 0 ? 'pointer-events-none' : ''}
                                 >
-                                    <HoverCard 
+                                    <HoverCard
                                         scale={category.lessonCount > 0 ? 1.02 : 1}
                                         glowColor={category.lessonCount > 0 ? colors.glow : 'rgba(107, 114, 128, 0.2)'}
                                         className="h-full"

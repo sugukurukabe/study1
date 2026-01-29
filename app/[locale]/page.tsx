@@ -5,9 +5,8 @@ import { BookOpen, Video, Headphones, FileText, Trophy, Users, Globe, Zap, Award
 import Link from 'next/link'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { getLocale, getTranslations } from 'next-intl/server'
-import { motion } from 'framer-motion'
+import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn, MotionDiv } from '@/components/ui/AnimatedSection'
 import LandingVideoPlayer from '@/components/learning/LandingVideoPlayer'
-import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn } from '@/components/ui/AnimatedSection'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { FloatingElement, ParticleField, GlowBreath } from '@/components/ui/FloatingElement'
 
@@ -41,27 +40,28 @@ const VIDEO_DATA: Record<string, {
 
 // セクターデータ
 const sectors = [
-  { id: 'agriculture', ja: '農業', id: 'Pertanian', vi: 'Nông nghiệp', en: 'Agriculture', color: 'green', icon: '🌾', active: true },
-  { id: 'livestock', ja: '畜産業', id: 'Peternakan', vi: 'Chăn nuôi', en: 'Livestock', color: 'amber', icon: '🐄', active: true },
-  { id: 'fishery', ja: '漁業', id: 'Perikanan', vi: 'Ngư nghiệp', en: 'Fishery', icon: '🐟' },
-  { id: 'construction', ja: '建設', id: 'Konstruksi', vi: 'Xây dựng', en: 'Construction', icon: '🏗️' },
-  { id: 'shipbuilding', ja: '造船', id: 'Pembuatan Kapal', vi: 'Đóng tàu', en: 'Shipbuilding', icon: '🚢' },
-  { id: 'automobile', ja: '自動車整備', id: 'Perawatan Mobil', vi: 'Sửa ô tô', en: 'Automobile', icon: '🔧' },
-  { id: 'aviation', ja: '航空', id: 'Penerbangan', vi: 'Hàng không', en: 'Aviation', icon: '✈️' },
-  { id: 'accommodation', ja: '宿泊業', id: 'Perhotelan', vi: 'Lưu trú', en: 'Accommodation', icon: '🏨' },
-  { id: 'foodManufacturing', ja: '食品製造', id: 'Manufaktur Makanan', vi: 'Chế biến thực phẩm', en: 'Food Manufacturing', icon: '🍱' },
-  { id: 'foodService', ja: '外食', id: 'Restoran', vi: 'Nhà hàng', en: 'Food Service', icon: '🍽️' },
-  { id: 'nursing', ja: '介護', id: 'Keperawatan', vi: 'Chăm sóc', en: 'Nursing', icon: '🩺' },
+  { slug: 'agriculture', ja: '農業', id: 'Pertanian', vi: 'Nông nghiệp', en: 'Agriculture', color: 'green', icon: '🌾', active: true },
+  { slug: 'livestock', ja: '畜産業', id: 'Peternakan', vi: 'Chăn nuôi', en: 'Livestock', color: 'amber', icon: '🐄', active: true },
+  { slug: 'fishery', ja: '漁業', id: 'Perikanan', vi: 'Ngư nghiệp', en: 'Fishery', icon: '🐟' },
+  { slug: 'construction', ja: '建設', id: 'Konstruksi', vi: 'Xây dựng', en: 'Construction', icon: '🏗️' },
+  { slug: 'shipbuilding', ja: '造船', id: 'Pembuatan Kapal', vi: 'Đóng tàu', en: 'Shipbuilding', icon: '🚢' },
+  { slug: 'automobile', ja: '自動車整備', id: 'Perawatan Mobil', vi: 'Sửa ô tô', en: 'Automobile', icon: '🔧' },
+  { slug: 'aviation', ja: '航空', id: 'Penerbangan', vi: 'Hàng không', en: 'Aviation', icon: '✈️' },
+  { slug: 'accommodation', ja: '宿泊業', id: 'Perhotelan', vi: 'Lưu trú', en: 'Accommodation', icon: '🏨' },
+  { slug: 'foodManufacturing', ja: '食品製造', id: 'Manufaktur Makanan', vi: 'Chế biến thực phẩm', en: 'Food Manufacturing', icon: '🍱' },
+  { slug: 'foodService', ja: '外食', id: 'Restoran', vi: 'Nhà hàng', en: 'Food Service', icon: '🍽️' },
+  { slug: 'nursing', ja: '介護', id: 'Keperawatan', vi: 'Chăm sóc', en: 'Nursing', icon: '🩺' },
 ]
 
 function getSectorName(id: string, locale: string): string {
-  const sector = sectors.find(s => s.id === id)
+  const sector = sectors.find(s => s.slug === id)
   if (!sector) return ''
   return sector[locale as keyof typeof sector] as string || sector.ja
+
 }
 
 function getSectorColor(id: string): string {
-  const sector = sectors.find(s => s.id === id)
+  const sector = sectors.find(s => s.slug === id)
   if (!sector) return 'gray'
   return sector.color || 'gray'
 }
@@ -94,7 +94,7 @@ export default async function LandingPage() {
           {/* Badges - FadeInUp */}
           <FadeInUp delay={0.1}>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
-              <motion.div
+              <MotionDiv
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -102,15 +102,15 @@ export default async function LandingPage() {
               >
                 <Award className="w-4 h-4 mr-1" />
                 {t('badge1')}
-              </motion.div>
-              <motion.div
+              </MotionDiv>
+              <MotionDiv
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="bg-white/20 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full"
               >
                 {t('badge2')}
-              </motion.div>
+              </MotionDiv>
             </div>
           </FadeInUp>
 
@@ -188,7 +188,7 @@ export default async function LandingPage() {
         {/* -wave decoration */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
           </svg>
         </div>
       </section>
@@ -280,9 +280,9 @@ export default async function LandingPage() {
           {/* Sector Grid - Staggered */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
             {sectors.map((sector, index) => (
-              <FadeInUp key={sector.id} delay={index * 0.05}>
+              <FadeInUp key={sector.slug} delay={index * 0.05}>
                 {sector.active ? (
-                  <Link href={`/sectors/${sector.id}`}>
+                  <Link href={`/sectors/${sector.slug}`}>
                     <HoverCard
                       scale={1.05}
                       glowColor={sector.color === 'green' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(245, 158, 11, 0.3)'}
@@ -294,7 +294,7 @@ export default async function LandingPage() {
                       `}>
                         <span className="text-4xl mb-2 block">{sector.icon}</span>
                         <span className={`text-sm font-medium ${sector.color === 'green' ? 'text-green-700' : 'text-amber-700'}`}>
-                          {getSectorName(sector.id, lang)}
+                          {getSectorName(sector.slug, lang)}
                         </span>
                       </div>
                     </HoverCard>
@@ -302,7 +302,7 @@ export default async function LandingPage() {
                 ) : (
                   <div className="bg-gray-50 rounded-2xl p-4 text-center opacity-60 cursor-not-allowed h-full flex flex-col items-center justify-center">
                     <span className="text-4xl mb-2 block">{sector.icon}</span>
-                    <span className="text-sm font-medium text-gray-500">{getSectorName(sector.id, lang)}</span>
+                    <span className="text-sm font-medium text-gray-500">{getSectorName(sector.slug, lang)}</span>
                     <span className="text-[10px] text-gray-400 mt-1">{t('sectors.comingSoon')}</span>
                   </div>
                 )}

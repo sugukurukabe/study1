@@ -144,3 +144,5 @@ export const SlideInRight = ({ children, delay = 0, className = '' }: { children
     {children}
   </motion.div>
 )
+
+export const MotionDiv = motion.div
