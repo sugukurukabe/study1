@@ -19,7 +19,7 @@ export default function LandingVideoPlayer({
   const [error, setError] = useState(false)
 
   // Cloudflare Stream アカウントID
-  const accountId = '5ec43b375b486a63567718e24c602055'
+  const accountId = process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID || '933b96ef9d4f85409bc15a4935369fcf'
 
   // サムネイルURL
   const thumbnailUrl = `https://customer-${accountId}.cloudflarestream.com/${videoId}/thumbnails/thumbnail.jpg?time=0s&height=720`
