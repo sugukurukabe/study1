@@ -110,8 +110,10 @@ const sectorsData: Record<string, {
         },
         color: 'amber',
         categories: [
-            { id: 'livestock-general', name: { ja: '畜産業一般', vi: 'Chăn nuôi tổng quát', id: 'Peternakan Umum', en: 'Livestock General' }, description: { ja: '日本の畜産業の概要と基礎知識を学びます', vi: 'Học tổng quan và kiến thức cơ bản về ngành Chăn nuôi', id: 'Pelajari gambaran umum peternakan Jepang', en: 'Learn overview of Japanese livestock' }, lessonCount: 0, quizCount: 5 },
-            { id: 'livestock-safety', name: { ja: '安全衛生', vi: 'An toàn vệ sinh', id: 'Keselamatan dan Kesehatan', en: 'Safety and Health' }, description: { ja: '畜産業における安全管理、衛生管理について学びます', vi: 'Học về quản lý an toàn trong ngành chăn nuôi', id: 'Pelajari tentang manajemen keselamatan dalam peternakan', en: 'Learn about safety management in livestock' }, lessonCount: 0, quizCount: 5 },
+            { id: 'livestock-ch1', name: { ja: '第一章　畜産の特徴', vi: 'Chương 1: Đặc điểm chăn nuôi', id: 'Bab 1: Karakteristik Peternakan', en: 'Chapter 1: Characteristics of Livestock' }, description: { ja: '畜産業の各分野の特徴を学習', vi: 'Học đặc điểm các lĩnh vực chăn nuôi', id: 'Pelajari karakteristik berbagai bidang peternakan', en: 'Learn characteristics of livestock sectors' }, lessonCount: 5, quizCount: 5 },
+            { id: 'livestock-ch2', name: { ja: '第二章　家畜と飼料に関する基礎知識', vi: 'Chương 2: Kiến thức cơ bản về gia súc và thức ăn', id: 'Bab 2: Pengetahuan Dasar tentang Ternak dan Pakan', en: 'Chapter 2: Basic Knowledge of Livestock and Feed' }, description: { ja: '家畜の種類と飼料の基礎知識', vi: 'Kiến thức cơ bản về các loại gia súc và thức ăn', id: 'Pengetahuan dasar tentang jenis ternak dan pakan', en: 'Basic knowledge of livestock types and feed' }, lessonCount: 3, quizCount: 5 },
+            { id: 'livestock-ch3', name: { ja: '第三章　日常の家畜の管理作業', vi: 'Chương 3: Công việc quản lý gia súc hàng ngày', id: 'Bab 3: Pekerjaan Manajemen Harian Ternak', en: 'Chapter 3: Daily Livestock Management Work' }, description: { ja: '農場の衛生管理と日常作業', vi: 'Quản lý vệ sinh trang trại và công việc hàng ngày', id: 'Manajemen kebersihan peternakan dan pekerjaan harian', en: 'Farm hygiene management and daily work' }, lessonCount: 5, quizCount: 5 },
+            { id: 'livestock-ch4', name: { ja: '第四章　追加学習', vi: 'Chương 4: Học bổ sung', id: 'Bab 4: Pembelajaran Tambahan', en: 'Chapter 4: Additional Learning' }, description: { ja: '実技試験対策と専門用語集', vi: 'Đối sách thi thực hành và từ vựng chuyên môn', id: 'Persiapan ujian praktik dan kosakata khusus', en: 'Practical exam prep and terminology' }, lessonCount: 6, quizCount: 5 },
         ]
     }
 }
