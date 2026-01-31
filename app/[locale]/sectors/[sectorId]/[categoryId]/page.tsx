@@ -102,6 +102,35 @@ const categoryData: Record<string, {
         ],
         quizQuestionCount: 5,
     },
+    // 畜産業
+    'livestock-ch1': {
+        sectorId: 'livestock',
+        sectorName: { ja: '畜産業', vi: 'Chăn nuôi', id: 'Peternakan', en: 'Livestock' },
+        name: { ja: '第一章　畜産の特徴', vi: 'Chương 1: Đặc điểm chăn nuôi', id: 'Bab 1: Karakteristik Peternakan', en: 'Chapter 1: Characteristics of Livestock' },
+        description: { ja: '畜産業の各分野の特徴を学習', vi: 'Học đặc điểm các lĩnh vực chăn nuôi', id: 'Pelajari karakteristik berbagai bidang peternakan', en: 'Learn characteristics of livestock sectors' },
+        color: 'amber',
+        lessons: [
+            { id: 'livestock-ch1-01', title: { ja: '1. 酪農（乳用牛）', vi: '1. Chăn nuôi bò sữa', id: '1. Peternakan Sapi Perah', en: '1. Dairy Farming' }, description: { ja: '酪農の特徴と乳用牛の基礎知識', vi: 'Đặc điểm chăn nuôi bò sữa', id: 'Karakteristik peternakan sapi perah', en: 'Characteristics of dairy farming' }, duration: 1200, hasVideo: true, hasAudio: false },
+            { id: 'livestock-ch1-02', title: { ja: '2. 牛肉生産（肉用牛）', vi: '2. Sản xuất thịt bò', id: '2. Produksi Daging Sapi', en: '2. Beef Production' }, description: { ja: '肉用牛の特徴と飼養管理', vi: 'Đặc điểm và quản lý bò thịt', id: 'Karakteristik dan manajemen sapi potong', en: 'Beef cattle characteristics and management' }, duration: 1080, hasVideo: true, hasAudio: false },
+            { id: 'livestock-ch1-03', title: { ja: '3. 養豚', vi: '3. Chăn nuôi lợn', id: '3. Peternakan Babi', en: '3. Pig Farming' }, description: { ja: '養豚の特徴と管理方法', vi: 'Đặc điểm và phương pháp quản lý lợn', id: 'Karakteristik dan metode manajemen babi', en: 'Pig farming characteristics and methods' }, duration: 1080, hasVideo: true, hasAudio: false },
+            { id: 'livestock-ch1-04', title: { ja: '4. 養鶏', vi: '4. Chăn nuôi gà', id: '4. Peternakan Ayam', en: '4. Poultry Farming' }, description: { ja: '養鶏の特徴と飼養システム', vi: 'Đặc điểm và hệ thống chăn nuôi gà', id: 'Karakteristik dan sistem peternakan ayam', en: 'Poultry farming characteristics and systems' }, duration: 1080, hasVideo: true, hasAudio: false },
+            { id: 'livestock-ch1-05', title: { ja: '5. その他', vi: '5. Khác', id: '5. Lainnya', en: '5. Others' }, description: { ja: 'その他の畜産（羊、山羊など）', vi: 'Chăn nuôi khác (cừu, dê, v.v.)', id: 'Peternakan lainnya (domba, kambing, dll)', en: 'Other livestock (sheep, goats, etc.)' }, duration: 900, hasVideo: true, hasAudio: false },
+        ],
+        quizQuestionCount: 5,
+    },
+    'livestock-ch2': {
+        sectorId: 'livestock',
+        sectorName: { ja: '畜産業', vi: 'Chăn nuôi', id: 'Peternakan', en: 'Livestock' },
+        name: { ja: '第二章　家畜と飼料に関する基礎知識', vi: 'Chương 2: Kiến thức cơ bản về gia súc và thức ăn', id: 'Bab 2: Pengetahuan Dasar tentang Ternak dan Pakan', en: 'Chapter 2: Basic Knowledge of Livestock and Feed' },
+        description: { ja: '家畜の種類と飼料の基礎知識', vi: 'Kiến thức cơ bản về các loại gia súc và thức ăn', id: 'Pengetahuan dasar tentang jenis ternak dan pakan', en: 'Basic knowledge of livestock types and feed' },
+        color: 'amber',
+        lessons: [
+            { id: 'livestock-ch2-01', title: { ja: '1. 乳用牛', vi: '1. Bò sữa', id: '1. Sapi Perah', en: '1. Dairy Cattle' }, description: { ja: '乳用牛の品種と特徴', vi: 'Giống và đặc điểm bò sữa', id: 'Jenis dan karakteristik sapi perah', en: 'Dairy cattle breeds and characteristics' }, duration: 1080, hasVideo: true, hasAudio: false },
+            { id: 'livestock-ch2-02', title: { ja: '2. 肉用牛', vi: '2. Bò thịt', id: '2. Sapi Potong', en: '2. Beef Cattle' }, description: { ja: '肉用牛の品種と特徴', vi: 'Giống và đặc điểm bò thịt', id: 'Jenis dan karakteristik sapi potong', en: 'Beef cattle breeds and characteristics' }, duration: 1080, hasVideo: true, hasAudio: false },
+            { id: 'livestock-ch2-03', title: { ja: '3. 豚', vi: '3. Lợn', id: '3. Babi', en: '3. Pigs' }, description: { ja: '豚の品種と特徴', vi: 'Giống và đặc điểm lợn', id: 'Jenis dan karakteristik babi', en: 'Pig breeds and characteristics' }, duration: 1080, hasVideo: true, hasAudio: false },
+        ],
+        quizQuestionCount: 5,
+    },
 }
 
 const colorClasses: Record<string, { bg: string; text: string; border: string; light: string; gradient: string }> = {
