@@ -18,14 +18,11 @@ export default function LandingVideoPlayer({
   const [isLoaded, setIsLoaded] = useState(false)
   const [error, setError] = useState(false)
 
-  // Cloudflare Stream アカウントID
-  const accountId = process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID || '933b96ef9d4f85409bc15a4935369fcf'
-
   // サムネイルURL
-  const thumbnailUrl = `https://customer-${accountId}.cloudflarestream.com/${videoId}/thumbnails/thumbnail.jpg?time=0s&height=720`
+  const thumbnailUrl = `https://videodelivery.net/${videoId}/thumbnails/thumbnail.jpg?time=0s&height=720`
 
   // 動画再生URL
-  const videoSrc = `https://customer-${accountId}.cloudflarestream.com/${videoId}/iframe?autoplay=true&poster=${encodeURIComponent(thumbnailUrl)}`
+  const videoSrc = `https://iframe.videodelivery.net/${videoId}?autoplay=true&poster=${encodeURIComponent(thumbnailUrl)}`
 
   const handlePlay = useCallback(() => {
     setIsPlaying(true)

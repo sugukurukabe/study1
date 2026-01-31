@@ -102,7 +102,7 @@ export default function VideoPlayer({
   }
 
   // Cloudflare Stream のビデオURL
-  const videoUrl = `https://customer-${process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID}.cloudflarestream.com/${cloudflareVideoId}/manifest/video.m3u8`
+  const videoUrl = `https://videodelivery.net/${cloudflareVideoId}/manifest/video.m3u8`
 
   // 利用可能な言語のリスト
   const availableLanguages = [
