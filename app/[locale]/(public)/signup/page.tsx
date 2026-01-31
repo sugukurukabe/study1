@@ -38,38 +38,60 @@ export default function SignupPage() {
     setLoading(true)
     setError('')
 
-    const supabase = createClient()
-    
-    // Sign up
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
-    })
-
-    if (authError) {
-      setError(authError.message)
-      setLoading(false)
-      return
-    }
-
-    if (authData.user) {
-      // Create profile
-      const { error: profileError } = await supabase.from('profiles').insert({
-        id: authData.user.id,
+    try {
+      const supabase = createClient()
+      
+      // Sign up
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
-        full_name: formData.fullName,
-        nationality: formData.nationality,
-        current_tier: 1,
+        password: formData.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          data: {
+            full_name: formData.fullName,
+            nationality: formData.nationality,
+          }
+        }
       })
 
-      if (profileError) {
-        setError(profileError.message)
+      if (authError) {
+        console.error('Signup error:', authError)
+        setError(authError.message)
         setLoading(false)
         return
       }
 
-      router.push('/home')
-      router.refresh()
+      if (authData.user) {
+        // Create profile
+        const { error: profileError } = await supabase.from('profiles').insert({
+          id: authData.user.id,
+          email: formData.email,
+          full_name: formData.fullName,
+          nationality: formData.nationality,
+          current_tier: 1,
+        })
+
+        if (profileError) {
+          console.error('Profile creation error:', profileError)
+          // プロファイル作成エラーは無視（トリガーで作成される可能性があるため）
+        }
+
+        // Check if email confirmation is required
+        if (authData.session) {
+          // Logged in immediately
+          const locale = window.location.pathname.split('/')[1] || 'ja'
+          router.push(`/${locale}/home`)
+          router.refresh()
+        } else {
+          // Email confirmation required
+          setError('確認メールを送信しました。メールを確認してアカウントを有効化してください。')
+          setLoading(false)
+        }
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      setError('登録に失敗しました。もう一度お試しください。')
+      setLoading(false)
     }
   }
 

@@ -41,10 +41,12 @@ export default function LoginPage() {
       })
 
       if (error) {
+        console.error('Login error:', error)
         setError(error.message)
         setLoading(false)
       } else {
-        router.push('/home')
+        const locale = window.location.pathname.split('/')[1] || 'ja'
+        router.push(`/${locale}/home`)
         router.refresh()
       }
     } catch (err) {
