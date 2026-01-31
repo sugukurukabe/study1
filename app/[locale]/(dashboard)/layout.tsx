@@ -3,18 +3,23 @@ import { createClient } from '@/lib/supabase/server'
 import DashboardNav from '@/components/layouts/DashboardNav'
 import MobileBottomNav from '@/components/layouts/MobileBottomNav'
 
+interface DashboardLayoutProps {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}
+
 export default async function DashboardLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+  params,
+}: DashboardLayoutProps) {
+  const { locale } = await params
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/login')
+    redirect(`/${locale}/login`)
   }
 
   // Get user profile
