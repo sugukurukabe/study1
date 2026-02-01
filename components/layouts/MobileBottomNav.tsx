@@ -2,7 +2,7 @@
 
 import { Home, BookOpen, FileText, User } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Database } from '@/lib/supabase/types'
 
@@ -14,12 +14,14 @@ interface MobileBottomNavProps {
 
 export default function MobileBottomNav({ profile }: MobileBottomNavProps) {
   const pathname = usePathname()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
 
   const navItems = [
-    { href: '/home', icon: Home, label: 'ホーム' },
-    { href: '/learn', icon: BookOpen, label: '学習' },
-    { href: '/exam/drill', icon: FileText, label: '試験' },
-    { href: '/profile', icon: User, label: 'プロフィール' },
+    { href: `/${locale}/home`, icon: Home, label: 'ホーム' },
+    { href: `/${locale}/learn`, icon: BookOpen, label: '学習' },
+    { href: `/${locale}/exam/drill`, icon: FileText, label: '試験' },
+    { href: `/${locale}/profile`, icon: User, label: 'プロフィール' },
   ]
 
   return (

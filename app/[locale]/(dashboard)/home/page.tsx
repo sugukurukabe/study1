@@ -2,10 +2,23 @@ import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Button } from '@/components/ui/button'
-import { BookOpen, Trophy, TrendingUp } from 'lucide-react'
+import { BookOpen, Trophy, TrendingUp, Video, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import { Badge } from '@/components/ui/badge'
 
-export default async function HomePage() {
+interface HomePageProps {
+  params: Promise<{ locale: string }>
+}
+
+// セクターデータ
+const sectors = [
+  { slug: 'agriculture', ja: '農業', id: 'Pertanian', icon: '🌾', active: true },
+  { slug: 'livestock', ja: '畜産業', id: 'Peternakan', icon: '🐄', active: true },
+  { slug: 'fishery', ja: '漁業', id: 'Perikanan', icon: '🐟', active: false },
+]
+
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -127,10 +140,56 @@ export default async function HomePage() {
         </Card>
       )}
 
+      {/* Sectors - 業種選択 */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          学習する業種を選択
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {sectors.map((sector) => (
+            <Link
+              key={sector.slug}
+              href={sector.active ? `/${locale}/sectors/${sector.slug}` : '#'}
+              className={sector.active ? '' : 'pointer-events-none'}
+            >
+              <Card className={`cursor-pointer transition-all ${
+                sector.active 
+                  ? 'hover:shadow-lg hover:scale-[1.02] border-2 border-indigo-200' 
+                  : 'opacity-50'
+              }`}>
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="text-4xl">{sector.icon}</div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900">
+                          {sector.ja}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          {sector.id}
+                        </p>
+                      </div>
+                    </div>
+                    {sector.active ? (
+                      <div className="flex items-center space-x-2">
+                        <Video className="h-5 w-5 text-indigo-600" />
+                        <ChevronRight className="h-6 w-6 text-gray-400" />
+                      </div>
+                    ) : (
+                      <Badge variant="outline">準備中</Badge>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="cursor-pointer hover:shadow-lg transition-shadow">
-          <Link href="/learn">
+          <Link href={`/${locale}/learn`}>
             <CardHeader>
               <CardTitle>新しいレッスンを開始</CardTitle>
             </CardHeader>
@@ -143,7 +202,7 @@ export default async function HomePage() {
         </Card>
 
         <Card className="cursor-pointer hover:shadow-lg transition-shadow">
-          <Link href="/exam/drill">
+          <Link href={`/${locale}/exam/drill`}>
             <CardHeader>
               <CardTitle>ドリル練習</CardTitle>
             </CardHeader>

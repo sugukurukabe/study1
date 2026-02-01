@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -22,11 +22,13 @@ interface DashboardNavProps {
 export default function DashboardNav({ user, profile }: DashboardNavProps) {
   const t = useTranslations()
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string || 'ja'
 
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    router.push('/login')
+    router.push(`/${locale}/login`)
     router.refresh()
   }
 
@@ -35,7 +37,7 @@ export default function DashboardNav({ user, profile }: DashboardNavProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
-          <Link href="/home" className="flex items-center space-x-2">
+          <Link href={`/${locale}/home`} className="flex items-center space-x-2">
             <BookOpen className="h-8 w-8 text-indigo-600" />
             <span className="text-xl font-bold text-gray-900">
               {t('common.appName')}
@@ -44,21 +46,21 @@ export default function DashboardNav({ user, profile }: DashboardNavProps) {
 
           {/* Navigation Links */}
           <div className="flex items-center space-x-6">
-            <Link href="/home" className="text-gray-700 hover:text-indigo-600">
+            <Link href={`/${locale}/home`} className="text-gray-700 hover:text-indigo-600">
               ホーム
             </Link>
-            <Link href="/learn" className="text-gray-700 hover:text-indigo-600">
+            <Link href={`/${locale}/learn`} className="text-gray-700 hover:text-indigo-600">
               学習
             </Link>
-            <Link href="/exam/drill" className="text-gray-700 hover:text-indigo-600">
+            <Link href={`/${locale}/exam/drill`} className="text-gray-700 hover:text-indigo-600">
               試験
             </Link>
             {profile && profile.current_tier >= 2 && (
               <>
-                <Link href="/history" className="text-gray-700 hover:text-indigo-600">
+                <Link href={`/${locale}/history`} className="text-gray-700 hover:text-indigo-600">
                   履歴
                 </Link>
-                <Link href="/badges" className="text-gray-700 hover:text-indigo-600">
+                <Link href={`/${locale}/badges`} className="text-gray-700 hover:text-indigo-600">
                   <Trophy className="h-5 w-5" />
                 </Link>
               </>
@@ -71,7 +73,7 @@ export default function DashboardNav({ user, profile }: DashboardNavProps) {
               {getTierName((profile?.current_tier || 1) as 1 | 2 | 3, 'ja')}
             </Badge>
             
-            <Link href="/profile">
+            <Link href={`/${locale}/profile`}>
               <Avatar>
                 <AvatarFallback>
                   {profile?.full_name?.charAt(0) || user.email?.charAt(0)}
