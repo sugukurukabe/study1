@@ -31,8 +31,10 @@ export default function LessonPage() {
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     
+    const locale = params.locale as string || 'ja'
+    
     if (!user) {
-      router.push('/login')
+      router.push(`/${locale}/login`)
       return
     }
 
@@ -44,7 +46,7 @@ export default function LessonPage() {
       .single()
 
     if (!lessonData) {
-      router.push('/learn')
+      router.push(`/${locale}/learn`)
       return
     }
 
@@ -56,7 +58,7 @@ export default function LessonPage() {
       .single()
 
     if (!profile || profile.current_tier < lessonData.required_tier) {
-      router.push('/learn')
+      router.push(`/${locale}/learn`)
       return
     }
 
@@ -141,7 +143,8 @@ export default function LessonPage() {
       progress: 100,
     })
 
-    router.push('/learn')
+    const locale = params.locale as string || 'ja'
+    router.push(`/${locale}/learn`)
   }
 
   if (loading) {
