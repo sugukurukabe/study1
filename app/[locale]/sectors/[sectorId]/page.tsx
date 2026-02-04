@@ -379,7 +379,7 @@ export default async function SectorPage({ params }: PageProps) {
                         {sector.categories.map((category, index) => (
                             <FadeInUp key={category.id} delay={index * 0.05}>
                                 <Link
-                                    href={category.lessonCount > 0 ? `/sectors/${sectorId}/${category.id}` : '#'}
+                                    href={category.lessonCount > 0 ? `/${locale}/sectors/${sectorId}/${category.id}` : '#'}
                                     className={category.lessonCount === 0 ? 'pointer-events-none' : ''}
                                 >
                                     <HoverCard

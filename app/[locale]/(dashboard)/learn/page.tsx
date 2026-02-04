@@ -6,11 +6,16 @@ import { BookOpen, Clock, Lock } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-export default async function LearnPage() {
+interface LearnPageProps {
+  params: Promise<{ locale: string }>
+}
+
+export default async function LearnPage({ params }: LearnPageProps) {
+  const { locale } = await params
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user) redirect('/login')
+  if (!user) redirect(`/${locale}/login`)
 
   const { data: profile } = await supabase
     .from('profiles')
@@ -18,17 +23,23 @@ export default async function LearnPage() {
     .eq('id', user.id)
     .single()
 
+  // 業種データ
+  const sectors = [
+    { slug: 'agriculture', ja: '農業', id: 'Pertanian', icon: '🌾', color: 'green', active: true },
+    { slug: 'livestock', ja: '畜産業', id: 'Peternakan', icon: '🐄', color: 'amber', active: true },
+    { slug: 'fishery', ja: '漁業', id: 'Perikanan', icon: '🐟', color: 'blue', active: false },
+  ]
+
+  // 各業種のレッスン数を取得
   const { data: lessons } = await supabase
     .from('lessons')
-    .select('*')
-    .order('order_index', { ascending: true })
+    .select('id, category_id')
 
-  const { data: progress } = await supabase
-    .from('progress')
-    .select('*')
-    .eq('user_id', user.id)
-
-  const progressMap = new Map(progress?.map(p => [p.lesson_id, p]) || [])
+  const lessonCountBySector = lessons?.reduce((acc, lesson) => {
+    const sectorId = lesson.category_id.split('-')[0]
+    acc[sectorId] = (acc[sectorId] || 0) + 1
+    return acc
+  }, {} as Record<string, number>) || {}
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -37,97 +48,58 @@ export default async function LearnPage() {
           学習コンテンツ
         </h1>
         <p className="text-gray-600">
-          特定技能2号試験に必要な知識を学びましょう
+          学習したい業種を選んでください
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {lessons?.map((lesson) => {
-          const userProgress = progressMap.get(lesson.id)
-          const hasAccess = (profile?.current_tier || 1) >= lesson.required_tier
-          const isCompleted = userProgress?.status === 'completed'
-          const isInProgress = userProgress?.status === 'in_progress'
-
-          return (
-            <Card
-              key={lesson.id}
-              className={`hover:shadow-lg transition-shadow ${
-                !hasAccess ? 'opacity-60' : ''
-              }`}
-            >
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="line-clamp-2">
-                      {lesson.title_ja}
-                    </CardTitle>
-                    <CardDescription className="mt-2 line-clamp-2">
-                      {lesson.description_ja}
-                    </CardDescription>
-                  </div>
-                  {!hasAccess && (
-                    <Lock className="h-5 w-5 text-gray-400 ml-2" />
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent>
+      {/* Sectors Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {sectors.map((sector) => (
+          <Link
+            key={sector.slug}
+            href={sector.active ? `/${locale}/sectors/${sector.slug}` : '#'}
+            className={sector.active ? '' : 'pointer-events-none'}
+          >
+            <Card className={`cursor-pointer transition-all h-full ${
+              sector.active 
+                ? 'hover:shadow-lg hover:scale-[1.02] border-2 border-indigo-200' 
+                : 'opacity-50'
+            }`}>
+              <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <Clock className="h-4 w-4" />
-                    <span>
-                      {lesson.duration_seconds
-                        ? `${Math.floor(lesson.duration_seconds / 60)}分`
-                        : '時間未設定'}
-                    </span>
+                  <div className="flex items-center space-x-4">
+                    <div className="text-5xl">{sector.icon}</div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        {sector.ja}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {sector.id}
+                      </p>
+                    </div>
                   </div>
-                  {isCompleted && (
-                    <Badge className="bg-green-100 text-green-800">
-                      完了
-                    </Badge>
-                  )}
-                  {isInProgress && (
-                    <Badge className="bg-blue-100 text-blue-800">
-                      学習中
-                    </Badge>
-                  )}
-                  {!hasAccess && (
-                    <Badge variant="outline">
-                      Tier {lesson.required_tier}
-                    </Badge>
-                  )}
                 </div>
-
-                {hasAccess ? (
-                  <Button asChild className="w-full">
-                    <Link href={`/learn/${lesson.id}`}>
-                      {isInProgress ? '続きから' : isCompleted ? '復習する' : '開始'}
-                    </Link>
-                  </Button>
-                ) : (
-                  <Button asChild variant="outline" className="w-full">
-                    <Link href="/profile/tier-upgrade">
-                      <Lock className="h-4 w-4 mr-2" />
-                      アップグレード
-                    </Link>
-                  </Button>
+                {sector.active && (
+                  <div className="flex items-center justify-between mt-4 pt-4 border-t">
+                    <div className="flex items-center space-x-4 text-sm text-gray-600">
+                      <span className="flex items-center">
+                        <BookOpen className="h-4 w-4 mr-1" />
+                        {lessonCountBySector[sector.slug] || 0} レッスン
+                      </span>
+                    </div>
+                    <Button size="sm" className="bg-indigo-600">
+                      学習開始
+                    </Button>
+                  </div>
+                )}
+                {!sector.active && (
+                  <Badge variant="outline" className="mt-4">準備中</Badge>
                 )}
               </CardContent>
             </Card>
-          )
-        })}
+          </Link>
+        ))}
       </div>
-
-      {(!lessons || lessons.length === 0) && (
-        <div className="text-center py-12">
-          <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
-            レッスンがまだありません
-          </h3>
-          <p className="text-gray-600">
-            近日中にコンテンツが追加されます
-          </p>
-        </div>
-      )}
     </div>
   )
 }

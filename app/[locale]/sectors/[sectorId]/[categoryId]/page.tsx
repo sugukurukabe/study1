@@ -208,7 +208,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 <div className="space-y-4 mb-12">
                     <h2 className="text-xl font-bold mb-4">レッスン一覧</h2>
                     {category.lessons.map((lesson, index) => (
-                        <Link key={lesson.id} href={`/learn/${lesson.id}`}>
+                        <Link key={lesson.id} href={`/${locale}/learn/${lesson.id}`}>
                             <Card className="hover:shadow-lg transition-all cursor-pointer hover:scale-[1.01] border-2">
                                 <CardContent className="p-6">
                                     <div className="flex items-start gap-4">
