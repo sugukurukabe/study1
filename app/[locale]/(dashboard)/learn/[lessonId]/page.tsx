@@ -46,7 +46,7 @@ export default function LessonPage() {
       .single()
 
     if (!lessonData) {
-      router.push(`/${locale}/learn`)
+      router.push(`/${locale}/home`)
       return
     }
 
@@ -58,7 +58,7 @@ export default function LessonPage() {
       .single()
 
     if (!profile || profile.current_tier < lessonData.required_tier) {
-      router.push(`/${locale}/learn`)
+      router.push(`/${locale}/home`)
       return
     }
 
