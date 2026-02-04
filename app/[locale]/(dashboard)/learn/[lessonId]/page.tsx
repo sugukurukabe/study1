@@ -144,7 +144,8 @@ export default function LessonPage() {
     })
 
     const locale = params.locale as string || 'ja'
-    router.push(`/${locale}/learn`)
+    // ホームページに戻る（次のレッスンを選びやすくする）
+    router.push(`/${locale}/home`)
   }
 
   if (loading) {
@@ -163,12 +164,14 @@ export default function LessonPage() {
     <div className="max-w-5xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <Link href="/learn">
-          <Button variant="ghost" className="mb-4">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            レッスン一覧に戻る
-          </Button>
-        </Link>
+        <Button 
+          variant="ghost" 
+          className="mb-4"
+          onClick={() => router.back()}
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          戻る
+        </Button>
         
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           {lesson.title_ja}
