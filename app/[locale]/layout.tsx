@@ -47,6 +47,12 @@ export default async function LocaleLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#4f46e5" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        {/* Google AdSense */}
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3112717782300727"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
