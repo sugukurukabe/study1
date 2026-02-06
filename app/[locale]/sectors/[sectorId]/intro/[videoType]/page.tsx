@@ -135,7 +135,7 @@ export default function VideoPlayerPage() {
             {/* Compact Header */}
             <header className="bg-white border-b sticky top-0 z-20">
                 <div className="flex items-center justify-between px-3 py-2">
-                    <Link href={`/sectors/${sectorId}`} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+                    <Link href={`/${locale}/sectors/${sectorId}`} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                         <ArrowLeft className="h-5 w-5" />
                         <span className="hidden sm:inline text-sm">{sectorName}</span>
                     </Link>
@@ -221,7 +221,7 @@ export default function VideoPlayerPage() {
                     <div className="p-4 bg-gray-50">
                         <div className="max-w-4xl mx-auto flex gap-3">
                             {video.nextVideo && sectorVideos[video.nextVideo] && (
-                                <Link href={`/sectors/${sectorId}/intro/${video.nextVideo}`} className="flex-1">
+                                <Link href={`/${locale}/sectors/${sectorId}/intro/${video.nextVideo}`} className="flex-1">
                                     <Button className={`w-full ${colors.bg} hover:opacity-90`} size="lg">
                                         次へ: {sectorVideos[video.nextVideo].title[lang]}
                                         <ChevronRight className="h-4 w-4 ml-2" />
@@ -229,7 +229,7 @@ export default function VideoPlayerPage() {
                                 </Link>
                             )}
                             {!video.nextVideo && (
-                                <Link href={`/sectors/${sectorId}`} className="flex-1">
+                                <Link href={`/${locale}/sectors/${sectorId}`} className="flex-1">
                                     <Button className={`w-full ${colors.bg} hover:opacity-90`} size="lg">
                                         学習を始める
                                         <BookOpen className="h-4 w-4 ml-2" />
@@ -249,7 +249,7 @@ export default function VideoPlayerPage() {
                                 </h3>
                                 <div className="space-y-2">
                                     {allVideos.map((v) => (
-                                        <Link key={v.key} href={`/sectors/${sectorId}/intro/${v.key}`}>
+                                        <Link key={v.key} href={`/${locale}/sectors/${sectorId}/intro/${v.key}`}>
                                             <div className={`p-3 rounded-lg border ${v.key === videoType ? `${colors.light} ${colors.border} border-2` : 'hover:bg-gray-50'}`}>
                                                 <div className="flex items-center gap-3">
                                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${v.key === videoType ? colors.bg + ' text-white' : 'bg-gray-100'}`}>
@@ -303,7 +303,7 @@ export default function VideoPlayerPage() {
 
                     {/* Back to Learning */}
                     <div className="p-4 border-t bg-white sticky bottom-0">
-                        <Link href={`/sectors/${sectorId}`}>
+                        <Link href={`/${locale}/sectors/${sectorId}`}>
                             <Button variant="outline" className="w-full">
                                 <FileText className="h-4 w-4 mr-2" />
                                 学習コンテンツ一覧

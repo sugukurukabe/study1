@@ -182,7 +182,7 @@ export default function QuizPage() {
                                     もう一度挑戦
                                 </Button>
                                 <Button asChild className={colors.bg}>
-                                    <Link href={`/sectors/${sectorId}/${categoryId}`}>
+                                    <Link href={`/${locale}/sectors/${sectorId}/${categoryId}`}>
                                         <ChevronRight className="h-4 w-4 mr-2" />
                                         章に戻る
                                     </Link>
@@ -200,7 +200,7 @@ export default function QuizPage() {
             {/* Header */}
             <div className={`bg-gradient-to-r ${colors.gradient} text-white py-6 px-4`}>
                 <div className="max-w-2xl mx-auto">
-                    <Link href={`/sectors/${sectorId}/${categoryId}`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
+                    <Link href={`/${locale}/sectors/${sectorId}/${categoryId}`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         章に戻る
                     </Link>

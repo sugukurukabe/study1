@@ -207,7 +207,7 @@ export default function CoursesPage() {
             {/* Header */}
             <div className={`bg-gradient-to-r ${colors.gradient} text-white py-12 px-4`}>
                 <div className="max-w-4xl mx-auto">
-                    <Link href={`/sectors/${sectorId}`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
+                    <Link href={`/${locale}/sectors/${sectorId}`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         {data.sectorName[lang]}に戻る
                     </Link>
@@ -249,7 +249,7 @@ export default function CoursesPage() {
                     {data.courses.map((course, index) => {
                         const IconComponent = iconComponents[course.icon] || BookOpen
                         return (
-                            <Link key={course.id} href={`/sectors/${sectorId}/courses/${course.id}`}>
+                            <Link key={course.id} href={`/${locale}/sectors/${sectorId}/courses/${course.id}`}>
                                 <Card className="hover:shadow-lg transition-all group cursor-pointer border-2 hover:border-green-300">
                                     <CardContent className="p-0">
                                         <div className="flex flex-col sm:flex-row">
@@ -297,7 +297,7 @@ export default function CoursesPage() {
 
                 {/* Back Button */}
                 <div className="mt-8">
-                    <Link href={`/sectors/${sectorId}`}>
+                    <Link href={`/${locale}/sectors/${sectorId}`}>
                         <Button variant="outline" size="lg" className="w-full sm:w-auto">
                             <ArrowLeft className="h-4 w-4 mr-2" />
                             {data.sectorName[lang]}トップに戻る

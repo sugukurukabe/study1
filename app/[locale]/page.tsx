@@ -363,7 +363,7 @@ export default async function LandingPage() {
             {sectors.map((sector, index) => (
               <FadeInUp key={sector.slug} delay={index * 0.05}>
                 {sector.active ? (
-                  <Link href={`/sectors/${sector.slug}`}>
+                  <Link href={`/${locale}/sectors/${sector.slug}`}>
                     <HoverCard
                       scale={1.05}
                       glowColor={sector.color === 'green' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(245, 158, 11, 0.3)'}

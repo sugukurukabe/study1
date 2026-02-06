@@ -203,7 +203,7 @@ export default function CourseDetailPage() {
             {/* Header */}
             <div className={`bg-gradient-to-r ${colors.gradient} text-white py-10 px-4`}>
                 <div className="max-w-4xl mx-auto">
-                    <Link href={`/sectors/${sectorId}/courses`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
+                    <Link href={`/${locale}/sectors/${sectorId}/courses`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         コース一覧に戻る
                     </Link>
@@ -316,7 +316,7 @@ export default function CourseDetailPage() {
 
                 {/* Start Learning Button */}
                 <div className="mt-8 sticky bottom-4">
-                    <Link href={`/sectors/${sectorId}/courses/${courseId}/${course.lessons[0].id}`}>
+                    <Link href={`/${locale}/sectors/${sectorId}/courses/${courseId}/${course.lessons[0].id}`}>
                         <Button className={`w-full ${colors.bg} hover:opacity-90 shadow-lg`} size="lg">
                             <Play className="h-5 w-5 mr-2" />
                             学習を始める
@@ -326,7 +326,7 @@ export default function CourseDetailPage() {
 
                 {/* Back Button */}
                 <div className="mt-4">
-                    <Link href={`/sectors/${sectorId}/courses`}>
+                    <Link href={`/${locale}/sectors/${sectorId}/courses`}>
                         <Button variant="outline" className="w-full">
                             <ArrowLeft className="h-4 w-4 mr-2" />
                             コース一覧に戻る

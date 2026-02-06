@@ -4,11 +4,16 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { BookOpen, FileQuestion, Users, Settings } from 'lucide-react'
 
+interface AdminLayoutProps {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}
+
 export default async function AdminLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+  params,
+}: AdminLayoutProps) {
+  const { locale } = await params
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -37,7 +42,7 @@ export default async function AdminLayout({
               Sugu-Study 管理画面
             </Link>
             <Button asChild variant="ghost" className="text-white">
-              <Link href="/home">ユーザー画面へ</Link>
+              <Link href={`/${locale}/home`}>ユーザー画面へ</Link>
             </Button>
           </div>
         </div>
