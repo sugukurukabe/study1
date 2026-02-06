@@ -30,8 +30,9 @@ export async function middleware(request: NextRequest) {
     }
   }
   
-  // 2. 認証が必要なパスの保護
-  const protectedPaths = ['/home', '/learn', '/exam', '/profile', '/history', '/badges', '/referral', '/onboarding', '/stats']
+  // 2. 認証が必要なパスの保護（/learnを削除 - 誰でもアクセス可能に）
+  // /exam/drill と /exam/simulation は認証必須（模擬試験）
+  const protectedPaths = ['/home', '/exam/drill', '/exam/simulation', '/profile', '/history', '/badges', '/referral', '/onboarding', '/stats']
   const isProtectedPath = protectedPaths.some(path => 
     request.nextUrl.pathname.includes(path)
   )

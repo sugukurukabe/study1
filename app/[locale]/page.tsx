@@ -229,6 +229,11 @@ export default async function LandingPage() {
             <FadeInUp delay={0.4}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button asChild size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-8 py-6 h-auto">
+                  <a href="#sectors">
+                    今すぐ無料で学習を始める
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2">
                   <Link href={`/${locale}/signup`}>
                     {t('ctaSignup')}
                   </Link>

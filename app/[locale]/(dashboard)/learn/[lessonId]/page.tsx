@@ -21,6 +21,7 @@ export default function LessonPage() {
   const [error, setError] = useState<string>('')
   const [progress, setProgress] = useState(0)
   const [startPosition, setStartPosition] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   
   const { updateProgress } = useLearningStore()
 
@@ -34,11 +35,10 @@ export default function LessonPage() {
     
     const locale = params.locale as string || 'ja'
     
-    if (!user) {
-      router.push(`/${locale}/login`)
-      return
-    }
+    // ログイン状態を保存
+    setIsLoggedIn(!!user)
 
+    // ログインなしでもレッスンを読み込む
     // Load lesson with error handling
     const { data: lessonData, error: lessonError } = await supabase
       .from('lessons')
@@ -60,48 +60,31 @@ export default function LessonPage() {
       return
     }
 
-    // Check tier access with error handling
-    const { data: profile, error: profileError } = await supabase
-      .from('profiles')
-      .select('current_tier')
-      .eq('id', user.id)
-      .single()
+    // Tierチェックを削除 - 全員が全てのコンテンツにアクセス可能
 
-    if (profileError) {
-      console.error('Profile query error:', profileError)
-      setError(`プロフィールの読み込みに失敗しました: ${profileError.message}`)
-      setLoading(false)
-      return
-    }
+    // Load progress - ログインしている場合のみ
+    if (user) {
+      const { data: progressData } = await supabase
+        .from('progress')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('lesson_id', lessonId)
+        .single()
 
-    if (!profile || profile.current_tier < lessonData.required_tier) {
-      console.warn('Tier access denied:', { userTier: profile?.current_tier, requiredTier: lessonData.required_tier })
-      setError(`このレッスンはTier ${lessonData.required_tier}以上で利用できます。現在のTier: ${profile?.current_tier || 1}`)
-      setLoading(false)
-      return
-    }
-
-    // Load progress
-    const { data: progressData } = await supabase
-      .from('progress')
-      .select('*')
-      .eq('user_id', user.id)
-      .eq('lesson_id', lessonId)
-      .single()
-
-    if (progressData) {
-      setStartPosition(progressData.last_position || 0)
-      const progressPercent = progressData.last_position && lessonData.duration_seconds
-        ? (progressData.last_position / lessonData.duration_seconds) * 100
-        : 0
-      setProgress(progressPercent)
-    } else {
-      // Create new progress entry
-      await supabase.from('progress').insert({
-        user_id: user.id,
-        lesson_id: lessonId,
-        status: 'in_progress',
-      })
+      if (progressData) {
+        setStartPosition(progressData.last_position || 0)
+        const progressPercent = progressData.last_position && lessonData.duration_seconds
+          ? (progressData.last_position / lessonData.duration_seconds) * 100
+          : 0
+        setProgress(progressPercent)
+      } else {
+        // Create new progress entry
+        await supabase.from('progress').insert({
+          user_id: user.id,
+          lesson_id: lessonId,
+          status: 'in_progress',
+        })
+      }
     }
 
     setLesson(lessonData)
@@ -114,9 +97,17 @@ export default function LessonPage() {
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     
-    if (!user) return
+    // ログインしていない場合は進捗を保存しない（動画は見れる）
+    if (!user) {
+      // ローカルで進捗表示だけ更新
+      if (lesson.duration_seconds) {
+        const progressPercent = (time / lesson.duration_seconds) * 100
+        setProgress(progressPercent)
+      }
+      return
+    }
 
-    // Update progress in database
+    // ログインしている場合は進捗を保存
     await supabase
       .from('progress')
       .upsert({
@@ -145,8 +136,17 @@ export default function LessonPage() {
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     
-    if (!user) return
+    const locale = params.locale as string || 'ja'
 
+    // ログインしていない場合は、登録を促すメッセージを表示
+    if (!user) {
+      if (confirm('学習の進捗を記録するには、アカウント登録が必要です。登録ページに移動しますか？')) {
+        router.push(`/${locale}/signup?redirect=/${locale}/learn/${lessonId}`)
+      }
+      return
+    }
+
+    // ログインしている場合は進捗を保存
     await supabase
       .from('progress')
       .update({
@@ -162,9 +162,8 @@ export default function LessonPage() {
       progress: 100,
     })
 
-    const locale = params.locale as string || 'ja'
-    // ホームページに戻る（次のレッスンを選びやすくする）
-    router.push(`/${locale}/home`)
+    // 前のページに戻る
+    router.back()
   }
 
   if (loading) {
@@ -208,6 +207,28 @@ export default function LessonPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* ログインしていない場合のバナー */}
+      {!isLoggedIn && (
+        <Card className="mb-6 border-2 border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50">
+          <CardContent className="p-4 md:p-6">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center space-x-3">
+                <div className="text-3xl">📚</div>
+                <div>
+                  <h3 className="font-bold text-gray-900">学習の進捗を記録しませんか？</h3>
+                  <p className="text-sm text-gray-600">無料アカウント登録で、学習履歴の保存や模擬試験の受験ができます</p>
+                </div>
+              </div>
+              <Link href={`/${params.locale || 'ja'}/signup?redirect=/${params.locale || 'ja'}/learn/${lessonId}`}>
+                <Button className="bg-amber-600 hover:bg-amber-700">
+                  無料登録
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Header */}
       <div className="mb-6">
         <Button 
