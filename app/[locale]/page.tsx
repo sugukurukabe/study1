@@ -180,104 +180,60 @@ export default async function LandingPage() {
         </header>
 
         {/* Hero Section - Clean and Professional */}
-        <section className="bg-white py-16 md:py-24 px-4">
-          <div className="max-w-6xl mx-auto text-center">
+        <section className="bg-gradient-to-b from-indigo-50 to-white py-16 md:py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left: Text Content */}
+              <div className="text-left space-y-6">
+                <FadeInUp delay={0.1}>
+                  <div className="inline-flex items-center space-x-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">
+                    <Award className="w-4 h-4" />
+                    <span>{t('badge1')}</span>
+                  </div>
+                </FadeInUp>
 
-        <div className="max-w-6xl mx-auto text-center pt-8 relative z-10">
-          {/* Badges - FadeInUp */}
-          <FadeInUp delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              <MotionDiv
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-amber-400 text-amber-900 text-sm px-4 py-2 font-bold rounded-full flex items-center"
-              >
-                <Award className="w-4 h-4 mr-1" />
-                {t('badge1')}
-              </MotionDiv>
-              <MotionDiv
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white/20 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full"
-              >
-                {t('badge2')}
-              </MotionDiv>
-            </div>
-          </FadeInUp>
+                <FadeInUp delay={0.2}>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                    {t('heroTitle')}
+                  </h1>
+                </FadeInUp>
 
-            <FadeInUp delay={0.1}>
-              <div className="inline-flex items-center space-x-2 bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Award className="w-4 h-4" />
-                <span>{t('badge1')}</span>
+                <FadeInUp delay={0.3}>
+                  <p className="text-lg md:text-xl text-gray-600">
+                    {t('heroDescription')}
+                  </p>
+                </FadeInUp>
+
+                <FadeInUp delay={0.4}>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button asChild size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-8 py-6 h-auto">
+                      <a href="#sectors">
+                        今すぐ無料で学習を始める
+                      </a>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2">
+                      <Link href={`/${locale}/signup`}>
+                        {t('ctaSignup')}
+                      </Link>
+                    </Button>
+                  </div>
+                </FadeInUp>
               </div>
-            </FadeInUp>
 
-            <FadeInUp delay={0.2}>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                {t('heroTitle')}
-              </h1>
-            </FadeInUp>
-
-            <FadeInUp delay={0.3}>
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                {t('heroDescription')}
-              </p>
-            </FadeInUp>
-
-            <FadeInUp delay={0.4}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <Button asChild size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-8 py-6 h-auto">
-                  <a href="#sectors">
-                    今すぐ無料で学習を始める
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2">
-                  <Link href={`/${locale}/signup`}>
-                    {t('ctaSignup')}
-                  </Link>
-                </Button>
-              </HoverCard>
+              {/* Right: Hero Image */}
+              <FadeInUp delay={0.5}>
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <img 
+                    src="/hero-image.png" 
+                    alt="外国人労働者が特定技能2号試験の勉強をしている様子"
+                    className="w-full h-auto"
+                  />
+                </div>
+              </FadeInUp>
             </div>
-          </FadeInUp>
-
-          {/* Feature Pills - Slide from sides */}
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <SlideInLeft delay={0.8}>
-              <FloatingElement amplitude={5} duration={2}>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <CheckCircle className="w-5 h-5 text-green-300" />
-                  <span>{t('feature1')}</span>
-                </div>
-              </FloatingElement>
-            </SlideInLeft>
-            <FadeInUp delay={0.9}>
-              <FloatingElement amplitude={5} duration={2.5} delay={0.5}>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <CheckCircle className="w-5 h-5 text-green-300" />
-                  <span>{t('feature2')}</span>
-                </div>
-              </FloatingElement>
-            </FadeInUp>
-            <SlideInRight delay={1}>
-              <FloatingElement amplitude={5} duration={3} delay={1}>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <CheckCircle className="w-5 h-5 text-green-300" />
-                  <span>{t('feature3')}</span>
-                </div>
-              </FloatingElement>
-            </SlideInRight>
           </div>
-        </div>
 
-        {/* -wave decoration */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+        </section>
 
       {/* Video Section */}
       <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
