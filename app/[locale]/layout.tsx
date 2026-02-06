@@ -1,20 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { Noto_Sans_JP, Inter } from 'next/font/google'
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ['latin'],
-  variable: '--font-noto-sans-jp',
-  display: 'swap',
-  fallback: ['system-ui', 'arial'],
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  fallback: ['system-ui', 'arial'],
-})
 
 export function generateStaticParams() {
   return [
@@ -44,7 +29,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} className={`${notoSansJP.variable} ${inter.variable}`}>
+    <html lang={locale} style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#4f46e5" />
