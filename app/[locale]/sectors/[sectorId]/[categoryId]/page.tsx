@@ -147,6 +147,31 @@ interface PageProps {
     params: Promise<{ sectorId: string; categoryId: string; locale: string }>
 }
 
+export async function generateMetadata({ params }: PageProps) {
+    const { categoryId, locale } = await params
+    const category = categoryData[categoryId]
+    
+    if (!category) {
+        return {}
+    }
+
+    const lang = (locale as 'ja' | 'vi' | 'id' | 'en') || 'ja'
+    const categoryName = category.name[lang]
+    const categoryDesc = category.description[lang]
+    const sectorName = category.sectorName[lang]
+
+    return {
+        title: `${categoryName} - ${sectorName}`,
+        description: categoryDesc,
+        openGraph: {
+            title: `${categoryName} | ${sectorName} | Sugu-Study`,
+            description: categoryDesc,
+            type: 'website',
+            locale: locale,
+        },
+    }
+}
+
 export default async function CategoryPage({ params }: PageProps) {
     const { sectorId, categoryId, locale } = await params
     const category = categoryData[categoryId]
@@ -204,48 +229,61 @@ export default async function CategoryPage({ params }: PageProps) {
                     </div>
                 </div>
 
-                {/* Lessons List */}
-                <div className="space-y-4 mb-12">
-                    <h2 className="text-xl font-bold mb-4">レッスン一覧</h2>
+                {/* Lessons List - Udemy風のデザイン */}
+                <div className="space-y-3 md:space-y-4 mb-12">
+                    <h2 className="text-xl md:text-2xl font-bold mb-4">レッスン一覧</h2>
                     {category.lessons.map((lesson, index) => (
                         <Link key={lesson.id} href={`/${locale}/learn/${lesson.id}`}>
-                            <Card className="hover:shadow-lg transition-all cursor-pointer hover:scale-[1.01] border-2">
-                                <CardContent className="p-6">
-                                    <div className="flex items-start gap-4">
-                                        {/* Lesson Number / Completion Status */}
-                                        <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${index < completedLessons
-                                                ? `${colors.bg} text-white`
-                                                : `${colors.light} ${colors.text}`
-                                            }`}>
-                                            {index < completedLessons ? (
-                                                <CheckCircle2 className="h-6 w-6" />
+                            <Card className="hover:shadow-lg transition-all cursor-pointer border-2 hover:border-indigo-300 active:scale-[0.98]">
+                                <CardContent className="p-4 md:p-6">
+                                    <div className="flex items-center gap-3 md:gap-4">
+                                        {/* Video Thumbnail / Number */}
+                                        <div className="flex-shrink-0">
+                                            {lesson.hasVideo ? (
+                                                <div className={`w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br ${colors.gradient} rounded-lg flex items-center justify-center relative`}>
+                                                    <Video className="h-8 w-8 md:h-10 md:w-10 text-white" />
+                                                    {index < completedLessons && (
+                                                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                                            <CheckCircle2 className="h-4 w-4 text-white" />
+                                                        </div>
+                                                    )}
+                                                </div>
                                             ) : (
-                                                index + 1
+                                                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-lg flex items-center justify-center font-bold text-xl ${index < completedLessons
+                                                        ? `${colors.bg} text-white`
+                                                        : `${colors.light} ${colors.text}`
+                                                    }`}>
+                                                    {index < completedLessons ? (
+                                                        <CheckCircle2 className="h-8 w-8" />
+                                                    ) : (
+                                                        index + 1
+                                                    )}
+                                                </div>
                                             )}
                                         </div>
 
                                         {/* Lesson Info */}
                                         <div className="flex-1 min-w-0">
-                                            <h3 className="text-lg font-semibold mb-1">
+                                            <h3 className="text-base md:text-lg font-semibold mb-1 line-clamp-1">
                                                 {lesson.title[lang]}
                                             </h3>
-                                            <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                                            <p className="text-gray-600 text-sm mb-2 line-clamp-2">
                                                 {lesson.description[lang]}
                                             </p>
-                                            <div className="flex items-center gap-4 text-sm text-gray-500">
+                                            <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-500">
                                                 <span className="flex items-center">
-                                                    <Clock className="h-4 w-4 mr-1" />
+                                                    <Clock className="h-3.5 w-3.5 md:h-4 md:w-4 mr-1" />
                                                     {formatDuration(lesson.duration)}
                                                 </span>
                                                 {lesson.hasVideo && (
                                                     <span className="flex items-center">
-                                                        <Video className="h-4 w-4 mr-1" />
+                                                        <Video className="h-3.5 w-3.5 md:h-4 md:w-4 mr-1" />
                                                         動画
                                                     </span>
                                                 )}
                                                 {lesson.hasAudio && (
                                                     <span className="flex items-center">
-                                                        <Headphones className="h-4 w-4 mr-1" />
+                                                        <Headphones className="h-3.5 w-3.5 md:h-4 md:w-4 mr-1" />
                                                         音声
                                                     </span>
                                                 )}
@@ -254,8 +292,8 @@ export default async function CategoryPage({ params }: PageProps) {
 
                                         {/* Play Button */}
                                         <div className="flex-shrink-0">
-                                            <div className={`w-12 h-12 ${colors.bg} rounded-full flex items-center justify-center`}>
-                                                <Play className="h-5 w-5 text-white ml-0.5" />
+                                            <div className={`w-10 h-10 md:w-12 md:h-12 ${colors.bg} rounded-full flex items-center justify-center`}>
+                                                <Play className="h-4 w-4 md:h-5 md:w-5 text-white ml-0.5" />
                                             </div>
                                         </div>
                                     </div>

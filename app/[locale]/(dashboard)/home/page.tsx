@@ -30,11 +30,8 @@ export default async function HomePage({ params }: HomePageProps) {
     .eq('id', user.id)
     .single()
 
-  // オンボーディング未完了の場合はリダイレクト
-  if (profile && !profile.onboarding_completed) {
-    const { redirect } = await import('next/navigation')
-    redirect(`/${locale}/onboarding`)
-  }
+  // オンボーディング未完了でもコンテンツは見れるように（リダイレクトしない）
+  const showOnboardingBanner = profile && !profile.onboarding_completed
 
   const { data: progress } = await supabase
     .from('progress')
@@ -87,116 +84,45 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Onboarding Banner - リダイレクトせずにバナー表示 */}
+      {showOnboardingBanner && (
+        <Card className="mb-6 border-2 border-indigo-200 bg-gradient-to-r from-indigo-50 to-purple-50">
+          <CardContent className="p-4 md:p-6">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center space-x-3">
+                <div className="text-3xl">🎯</div>
+                <div>
+                  <h3 className="font-bold text-gray-900">学習設定をカスタマイズしませんか？</h3>
+                  <p className="text-sm text-gray-600">あなたに合った学習プランを作成できます</p>
+                </div>
+              </div>
+              <Link href={`/${locale}/onboarding`}>
+                <Button className="bg-indigo-600 hover:bg-indigo-700">
+                  設定する
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Welcome Section - パーソナライズ */}
-      <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+      <div className="mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
           ようこそ、{profile?.full_name}さん
         </h1>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600">
           {goalMessage}
         </p>
-        
-        {/* 今日の学習進捗 */}
-        {profile?.daily_goal_minutes && (
-          <Card className="mt-4 border-2 border-green-200 bg-green-50">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700">
-                  今日の学習時間
-                </span>
-                <span className="text-sm font-bold text-green-700">
-                  {Math.round(todayMinutes)}分 / {dailyGoalMinutes}分
-                </span>
-              </div>
-              <Progress 
-                value={(todayMinutes / dailyGoalMinutes) * 100} 
-                className="h-3"
-              />
-              {todayMinutes >= dailyGoalMinutes && (
-                <p className="text-xs text-green-700 mt-2 font-medium">
-                  🎉 今日の目標達成！素晴らしい！
-                </p>
-              )}
-            </CardContent>
-          </Card>
-        )}
       </div>
 
-      {/* Stats Grid - 改善された進捗表示 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card className="border-2 border-indigo-100">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-700">
-              完了レッスン
-            </CardTitle>
-            <BookOpen className="h-5 w-5 text-indigo-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-indigo-600">
-              {progress?.filter(p => p.status === 'completed').length || 0}
-            </div>
-            <p className="text-xs text-gray-600 mt-1">
-              学習を続けましょう
-            </p>
-            {progress && progress.length > 0 && (
-              <div className="mt-3">
-                <Progress 
-                  value={(progress.filter(p => p.status === 'completed').length / progress.length) * 100} 
-                  className="h-2"
-                />
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card className="border-2 border-amber-100">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-700">
-              獲得バッジ
-            </CardTitle>
-            <Trophy className="h-5 w-5 text-amber-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-amber-600">
-              {badges?.length || 0}
-            </div>
-            <p className="text-xs text-gray-600 mt-1">
-              {profile?.current_tier === 1 ? 'Tier 2で解放' : '素晴らしい！'}
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-2 border-purple-100">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-700">
-              現在のTier
-            </CardTitle>
-            <TrendingUp className="h-5 w-5 text-purple-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-purple-600">
-              Tier {profile?.current_tier || 1}
-            </div>
-            <p className="text-xs text-gray-600 mt-1">
-              {profile?.current_tier !== 3 ? (
-                <Link href={`/${locale}/profile/tier-upgrade`} className="text-indigo-600 hover:underline font-medium">
-                  アップグレード →
-                </Link>
-              ) : (
-                '最高レベル達成！'
-              )}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Continue Learning - 最近学習したレッスン */}
+      {/* Continue Learning - 最近学習したレッスン（最優先表示） */}
       {recentLessons && recentLessons.length > 0 && (
-        <Card className="mb-8 border-2 border-indigo-200">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Video className="h-5 w-5 text-indigo-600" />
-              <span>最近学習したレッスン</span>
+        <Card className="mb-6 border-2 border-indigo-200 shadow-lg">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center space-x-2 text-xl">
+              <Video className="h-6 w-6 text-indigo-600" />
+              <span>学習を続ける</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -210,21 +136,21 @@ export default async function HomePage({ params }: HomePageProps) {
 
                 return (
                   <Link key={lesson.id} href={`/${locale}/learn/${lesson.id}`}>
-                    <Card className="hover:shadow-md transition-all cursor-pointer border">
-                      <CardContent className="p-4">
+                    <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-indigo-300 active:scale-[0.98]">
+                      <CardContent className="p-4 md:p-5">
                         <div className="flex items-center gap-4">
                           {/* Video Thumbnail Icon */}
-                          <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                          <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
                             {hasVideo ? (
-                              <Video className="h-8 w-8 text-white" />
+                              <Video className="h-8 w-8 md:h-10 md:w-10 text-white" />
                             ) : (
-                              <BookOpen className="h-8 w-8 text-white" />
+                              <BookOpen className="h-8 w-8 md:h-10 md:w-10 text-white" />
                             )}
                           </div>
                           
                           {/* Lesson Info */}
                           <div className="flex-1 min-w-0">
-                            <h3 className="font-semibold text-gray-900 mb-1 line-clamp-1">
+                            <h3 className="font-semibold text-gray-900 mb-1 line-clamp-1 text-base md:text-lg">
                               {lesson.title_ja}
                             </h3>
                             <p className="text-sm text-gray-600 mb-2 line-clamp-1">
@@ -233,7 +159,7 @@ export default async function HomePage({ params }: HomePageProps) {
                             {progressPercent > 0 && (
                               <div className="flex items-center gap-2">
                                 <Progress value={progressPercent} className="h-2" />
-                                <span className="text-xs text-gray-500 whitespace-nowrap">
+                                <span className="text-xs text-gray-500 whitespace-nowrap font-medium">
                                   {progressPercent}%
                                 </span>
                               </div>
@@ -241,7 +167,7 @@ export default async function HomePage({ params }: HomePageProps) {
                           </div>
                           
                           {/* Continue Button */}
-                          <ChevronRight className="h-6 w-6 text-gray-400 flex-shrink-0" />
+                          <ChevronRight className="h-6 w-6 md:h-7 md:w-7 text-indigo-600 flex-shrink-0" />
                         </div>
                       </CardContent>
                     </Card>
@@ -252,6 +178,71 @@ export default async function HomePage({ params }: HomePageProps) {
           </CardContent>
         </Card>
       )}
+
+      {/* 今日の学習進捗 - コンパクト版 */}
+      {profile?.daily_goal_minutes && (
+        <Card className="mb-6 border-2 border-green-200 bg-green-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">
+                今日の学習時間
+              </span>
+              <span className="text-sm font-bold text-green-700">
+                {Math.round(todayMinutes)}分 / {dailyGoalMinutes}分
+              </span>
+            </div>
+            <Progress 
+              value={(todayMinutes / dailyGoalMinutes) * 100} 
+              className="h-3"
+            />
+            {todayMinutes >= dailyGoalMinutes && (
+              <p className="text-xs text-green-700 mt-2 font-medium">
+                🎉 今日の目標達成！素晴らしい！
+              </p>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Stats Grid - コンパクト版 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <Card className="border border-indigo-100 hover:shadow-md transition-shadow">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-medium text-gray-600">完了レッスン</span>
+              <BookOpen className="h-4 w-4 text-indigo-600" />
+            </div>
+            <div className="text-2xl font-bold text-indigo-600 mb-1">
+              {progress?.filter(p => p.status === 'completed').length || 0}
+            </div>
+            {progress && progress.length > 0 && (
+              <Progress 
+                value={(progress.filter(p => p.status === 'completed').length / progress.length) * 100} 
+                className="h-1.5"
+              />
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="border border-purple-100 hover:shadow-md transition-shadow">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-medium text-gray-600">現在のTier</span>
+              <TrendingUp className="h-4 w-4 text-purple-600" />
+            </div>
+            <div className="text-2xl font-bold text-purple-600 mb-1">
+              Tier {profile?.current_tier || 1}
+            </div>
+            {profile?.current_tier !== 3 ? (
+              <Link href={`/${locale}/profile/tier-upgrade`} className="text-xs text-indigo-600 hover:underline font-medium">
+                アップグレード →
+              </Link>
+            ) : (
+              <span className="text-xs text-gray-600">最高レベル！</span>
+            )}
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Sectors - 業種選択（パーソナライズ） */}
       <div className="mb-8">

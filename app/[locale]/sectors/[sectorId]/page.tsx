@@ -146,6 +146,30 @@ interface PageProps {
     params: Promise<{ sectorId: string; locale: string }>
 }
 
+export async function generateMetadata({ params }: PageProps) {
+    const { sectorId, locale } = await params
+    const sector = sectorsData[sectorId]
+    
+    if (!sector) {
+        return {}
+    }
+
+    const lang = (locale as 'ja' | 'vi' | 'id' | 'en') || 'ja'
+    const sectorName = sector.name[lang]
+    const sectorDesc = sector.description[lang]
+
+    return {
+        title: `${sectorName} - 特定技能2号試験対策`,
+        description: sectorDesc,
+        openGraph: {
+            title: `${sectorName} | Sugu-Study`,
+            description: sectorDesc,
+            type: 'website',
+            locale: locale,
+        },
+    }
+}
+
 export default async function SectorPage({ params }: PageProps) {
     const { sectorId, locale } = await params
     const sector = sectorsData[sectorId]

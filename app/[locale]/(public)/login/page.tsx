@@ -16,6 +16,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  
+  // URLからリダイレクト先を取得
+  const getRedirectPath = () => {
+    if (typeof window === 'undefined') return null
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get('redirect')
+  }
 
   // Supabase設定チェック
   const hasSupabaseConfig = process.env.NEXT_PUBLIC_SUPABASE_URL && 
@@ -46,7 +53,15 @@ export default function LoginPage() {
         setLoading(false)
       } else {
         const locale = window.location.pathname.split('/')[1] || 'ja'
-        router.push(`/${locale}/home`)
+        const redirectTo = getRedirectPath()
+        
+        if (redirectTo) {
+          // リダイレクト先が指定されている場合はそこに遷移
+          router.push(redirectTo)
+        } else {
+          // デフォルトはホームページ
+          router.push(`/${locale}/home`)
+        }
         router.refresh()
       }
     } catch (err) {

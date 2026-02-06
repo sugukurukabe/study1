@@ -88,10 +88,18 @@ export default function VideoPlayer({
   }
 
   const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen()
-      }
+    const videoElement = videoRef.current
+    if (!videoElement) return
+
+    // モバイルデバイスでのフルスクリーン対応
+    if (videoElement.requestFullscreen) {
+      videoElement.requestFullscreen()
+    } else if ((videoElement as any).webkitRequestFullscreen) {
+      // Safari対応
+      (videoElement as any).webkitRequestFullscreen()
+    } else if ((videoElement as any).webkitEnterFullscreen) {
+      // iOS Safari対応
+      (videoElement as any).webkitEnterFullscreen()
     }
   }
 
@@ -162,6 +170,9 @@ export default function VideoPlayer({
           className="w-full aspect-video"
           onClick={togglePlay}
           key={cloudflareVideoId}
+          playsInline
+          controls={false}
+          preload="metadata"
         >
           <source src={videoUrl} type="application/x-mpegURL" />
           お使いのブラウザは動画タグに対応していません。
@@ -177,8 +188,8 @@ export default function VideoPlayer({
 
       {/* Controls */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-        {/* Progress Bar */}
-        <div className="mb-4">
+        {/* Progress Bar - モバイル最適化 */}
+        <div className="mb-3 md:mb-4">
           <input
             type="range"
             min="0"
@@ -189,43 +200,47 @@ export default function VideoPlayer({
                 videoRef.current.currentTime = Number(e.target.value)
               }
             }}
-            className="w-full h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+            className="w-full h-2 md:h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer touch-manipulation"
+            style={{
+              WebkitAppearance: 'none',
+              background: `linear-gradient(to right, #4f46e5 0%, #4f46e5 ${(currentTime / duration) * 100}%, #4b5563 ${(currentTime / duration) * 100}%, #4b5563 100%)`
+            }}
           />
-          <div className="flex justify-between text-xs text-white mt-1">
+          <div className="flex justify-between text-xs md:text-sm text-white mt-1.5 md:mt-1 font-medium">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>
         </div>
 
-        {/* Control Buttons */}
+        {/* Control Buttons - モバイル最適化 */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1 md:space-x-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={togglePlay}
-              className="text-white hover:bg-white/20"
+              className="text-white hover:bg-white/20 min-w-[44px] min-h-[44px] p-2"
             >
-              {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+              {isPlaying ? <Pause className="h-6 w-6 md:h-5 md:w-5" /> : <Play className="h-6 w-6 md:h-5 md:w-5" />}
             </Button>
             
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleMute}
-              className="text-white hover:bg-white/20"
+              className="text-white hover:bg-white/20 min-w-[44px] min-h-[44px] p-2"
             >
-              {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+              {isMuted ? <VolumeX className="h-6 w-6 md:h-5 md:w-5" /> : <Volume2 className="h-6 w-6 md:h-5 md:w-5" />}
             </Button>
 
-            <div className="flex items-center space-x-1">
+            <div className="hidden sm:flex items-center space-x-1">
               {[0.75, 1, 1.25, 1.5].map((speed) => (
                 <Button
                   key={speed}
                   variant="ghost"
                   size="sm"
                   onClick={() => handleSpeedChange(speed)}
-                  className={`text-white text-xs hover:bg-white/20 ${
+                  className={`text-white text-xs hover:bg-white/20 min-h-[36px] ${
                     playbackSpeed === speed ? 'bg-white/30' : ''
                   }`}
                 >
@@ -233,15 +248,32 @@ export default function VideoPlayer({
                 </Button>
               ))}
             </div>
+
+            {/* モバイル用の速度変更ボタン */}
+            <div className="sm:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  const speeds = [0.75, 1, 1.25, 1.5]
+                  const currentIndex = speeds.indexOf(playbackSpeed)
+                  const nextSpeed = speeds[(currentIndex + 1) % speeds.length]
+                  handleSpeedChange(nextSpeed)
+                }}
+                className="text-white hover:bg-white/20 min-w-[44px] min-h-[44px] text-xs font-bold"
+              >
+                {playbackSpeed}x
+              </Button>
+            </div>
           </div>
 
           <Button
             variant="ghost"
             size="sm"
             onClick={handleFullscreen}
-            className="text-white hover:bg-white/20"
+            className="text-white hover:bg-white/20 min-w-[44px] min-h-[44px] p-2"
           >
-            <Maximize className="h-5 w-5" />
+            <Maximize className="h-6 w-6 md:h-5 md:w-5" />
           </Button>
         </div>
       </div>

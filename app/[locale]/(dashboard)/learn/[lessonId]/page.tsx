@@ -18,6 +18,7 @@ export default function LessonPage() {
   
   const [lesson, setLesson] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string>('')
   const [progress, setProgress] = useState(0)
   const [startPosition, setStartPosition] = useState(0)
   
@@ -38,27 +39,45 @@ export default function LessonPage() {
       return
     }
 
-    // Load lesson
-    const { data: lessonData } = await supabase
+    // Load lesson with error handling
+    const { data: lessonData, error: lessonError } = await supabase
       .from('lessons')
       .select('*')
       .eq('id', lessonId)
       .single()
 
-    if (!lessonData) {
-      router.push(`/${locale}/home`)
+    if (lessonError) {
+      console.error('Lesson query error:', lessonError)
+      setError(`レッスンの読み込みに失敗しました: ${lessonError.message}`)
+      setLoading(false)
       return
     }
 
-    // Check tier access
-    const { data: profile } = await supabase
+    if (!lessonData) {
+      console.error('Lesson not found:', lessonId)
+      setError('レッスンが見つかりませんでした。レッスンID: ' + lessonId)
+      setLoading(false)
+      return
+    }
+
+    // Check tier access with error handling
+    const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('current_tier')
       .eq('id', user.id)
       .single()
 
+    if (profileError) {
+      console.error('Profile query error:', profileError)
+      setError(`プロフィールの読み込みに失敗しました: ${profileError.message}`)
+      setLoading(false)
+      return
+    }
+
     if (!profile || profile.current_tier < lessonData.required_tier) {
-      router.push(`/${locale}/home`)
+      console.warn('Tier access denied:', { userTier: profile?.current_tier, requiredTier: lessonData.required_tier })
+      setError(`このレッスンはTier ${lessonData.required_tier}以上で利用できます。現在のTier: ${profile?.current_tier || 1}`)
+      setLoading(false)
       return
     }
 
@@ -152,6 +171,33 @@ export default function LessonPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-xl">読み込み中...</div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen px-4">
+        <Card className="max-w-md w-full p-8 text-center border-2 border-red-200">
+          <div className="text-6xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">エラーが発生しました</h2>
+          <p className="text-gray-600 mb-6">{error}</p>
+          <div className="space-y-3">
+            <Button 
+              onClick={() => router.back()}
+              variant="outline"
+              className="w-full"
+            >
+              前のページに戻る
+            </Button>
+            <Button 
+              onClick={() => router.push(`/${params.locale || 'ja'}/home`)}
+              className="w-full"
+            >
+              ホームに戻る
+            </Button>
+          </div>
+        </Card>
       </div>
     )
   }

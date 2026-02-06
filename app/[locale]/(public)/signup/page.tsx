@@ -32,6 +32,13 @@ export default function SignupPage() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  
+  // URLからリダイレクト先を取得
+  const getRedirectPath = () => {
+    if (typeof window === 'undefined') return null
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get('redirect')
+  }
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -80,7 +87,15 @@ export default function SignupPage() {
         if (authData.session) {
           // Logged in immediately
           const locale = window.location.pathname.split('/')[1] || 'ja'
-          router.push(`/${locale}/home`)
+          const redirectTo = getRedirectPath()
+          
+          if (redirectTo) {
+            // リダイレクト先が指定されている場合はそこに遷移
+            router.push(redirectTo)
+          } else {
+            // デフォルトはホームページ
+            router.push(`/${locale}/home`)
+          }
           router.refresh()
         } else {
           // Email confirmation required

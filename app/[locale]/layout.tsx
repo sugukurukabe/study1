@@ -48,6 +48,9 @@ export default async function LocaleLayout({
         <meta name="theme-color" content="#4f46e5" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         
+        {/* Google Search Console Verification - ユーザーが後で追加 */}
+        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> */}
+        
         {/* Google Analytics */}
         <script 
           async 
