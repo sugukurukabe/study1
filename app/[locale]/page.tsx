@@ -9,6 +9,74 @@ import { FadeInUp, SlideInLeft, SlideInRight, ScaleIn, MotionDiv } from '@/compo
 import LandingVideoPlayer from '@/components/learning/LandingVideoPlayer'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { FloatingElement, ParticleField, GlowBreath } from '@/components/ui/FloatingElement'
+import { EducationalOrganizationSchema, WebSiteSchema } from '@/components/StructuredData'
+import type { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  
+  const metadata = {
+    ja: {
+      title: '特定技能2号試験対策 | Sugu-Study - 外国人労働者向け学習プラットフォーム',
+      description: '特定技能2号試験に合格するための完全学習プラットフォーム。動画・音声・テキストで効率的に学習。農業・畜産業・漁業など11分野対応。日本語・インドネシア語・ベトナム語・英語で学習可能。',
+      keywords: '特定技能2号, 試験対策, 外国人労働者, 在留資格, 農業, 畜産業, 漁業, オンライン学習, インドネシア語, ベトナム語',
+    },
+    id: {
+      title: 'Persiapan Ujian Tokutei Ginou 2 | Sugu-Study - Platform Belajar untuk Pekerja Asing',
+      description: 'Platform pembelajaran lengkap untuk lulus ujian Tokutei Ginou 2. Belajar efisien dengan video, audio, dan teks. Tersedia untuk 11 bidang: pertanian, peternakan, perikanan, dll. Belajar dalam bahasa Indonesia, Jepang, Vietnam, dan Inggris.',
+      keywords: 'Tokutei Ginou 2, persiapan ujian, pekerja asing Jepang, visa kerja, pertanian, peternakan, belajar online, bahasa Indonesia',
+    },
+    vi: {
+      title: 'Luyện thi Tokutei Ginou 2 | Sugu-Study - Nền tảng học tập cho lao động nước ngoài',
+      description: 'Nền tảng học tập hoàn chỉnh để đỗ kỳ thi Tokutei Ginou 2. Học hiệu quả với video, audio và văn bản. Hỗ trợ 11 lĩnh vực: nông nghiệp, chăn nuôi, ngư nghiệp, v.v. Học bằng tiếng Việt, Nhật, Indonesia và Anh.',
+      keywords: 'Tokutei Ginou 2, luyện thi, lao động nước ngoài Nhật Bản, visa lao động, nông nghiệp, chăn nuôi, học online, tiếng Việt',
+    },
+    en: {
+      title: 'Tokutei Ginou 2 Exam Prep | Sugu-Study - Learning Platform for Foreign Workers',
+      description: 'Complete learning platform to pass the Tokutei Ginou 2 exam. Study efficiently with videos, audio, and text. Available for 11 fields: agriculture, livestock, fishery, etc. Learn in English, Japanese, Indonesian, and Vietnamese.',
+      keywords: 'Tokutei Ginou 2, exam preparation, foreign workers Japan, work visa, agriculture, livestock, online learning, multilingual',
+    },
+  }
+
+  const data = metadata[locale as keyof typeof metadata] || metadata.ja
+
+  return {
+    title: data.title,
+    description: data.description,
+    keywords: data.keywords,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url: `https://sugu-study.com/${locale}`,
+      siteName: 'Sugu-Study',
+      locale: locale,
+      type: 'website',
+      images: [
+        {
+          url: 'https://sugu-study.com/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Sugu-Study - Tokutei Ginou 2 Learning Platform',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: data.title,
+      description: data.description,
+      images: ['https://sugu-study.com/og-image.jpg'],
+    },
+    alternates: {
+      canonical: `https://sugu-study.com/${locale}`,
+      languages: {
+        'ja': 'https://sugu-study.com/ja',
+        'id': 'https://sugu-study.com/id',
+        'vi': 'https://sugu-study.com/vi',
+        'en': 'https://sugu-study.com/en',
+      },
+    },
+  }
+}
 
 // Cloudflare Stream 動画ID（言語別）
 const VIDEO_DATA: Record<string, {
@@ -69,14 +137,24 @@ function getSectorColor(id: string): string {
 export default async function LandingPage() {
   const locale = await getLocale()
   const t = await getTranslations('landing')
+
+  // 構造化データ
+  const structuredData = (
+    <>
+      <EducationalOrganizationSchema />
+      <WebSiteSchema />
+    </>
+  )
   const lang = locale as 'ja' | 'vi' | 'id' | 'en'
 
   // 現在の言語の動画データ
   const videoData = VIDEO_DATA[lang] || VIDEO_DATA['ja']
 
   return (
-    <div className="min-h-screen overflow-hidden">
-      {/* Hero Section */}
+    <>
+      {structuredData}
+      <div className="min-h-screen overflow-hidden">
+        {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-20 px-4 overflow-hidden">
         {/* パーティクル効果 */}
         <ParticleField count={30} className="opacity-30" />
@@ -617,6 +695,7 @@ export default async function LandingPage() {
           </FadeInUp>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   )
 }
