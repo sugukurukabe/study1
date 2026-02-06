@@ -79,6 +79,28 @@ const videoData: Record<string, Record<string, {
             order: 3,
         },
     },
+    livestock: {
+        overview: {
+            title: {
+                ja: '試験の内容　受験の流れ',
+                vi: 'Nội dung kỳ thi và quy trình',
+                id: 'Isi ujian dan prosesnya',
+                en: 'Exam Content and Process'
+            },
+            description: {
+                ja: '畜産分野の特定技能2号試験の内容と受験の流れを解説します。',
+                vi: 'Giải thích về nội dung kỳ thi và quy trình thi kỹ năng đặc định số 2 ngành Chăn nuôi.',
+                id: 'Penjelasan tentang isi ujian dan proses ujian keterampilan khusus tingkat 2 bidang Peternakan.',
+                en: 'Explanation of the exam content and process for Specified Skilled Worker Type 2 in Livestock.'
+            },
+            videoId: {
+                ja: '7a9e093bae25f792a9e1771889b47526',
+                id: '165133b59f1f82da0316b14d0a48cf5a',
+            },
+            duration: 600,
+            order: 1,
+        },
+    },
 }
 
 const sectorNames: Record<string, { ja: string; vi: string; id: string; en: string }> = {
