@@ -166,9 +166,9 @@ export default function SignupPage() {
           </form>
 
           <div className="mt-4 text-center text-sm">
-            <a href="/login" className="text-indigo-600 hover:underline">
+            <Link href={`/${locale}/login`} className="text-indigo-600 hover:underline">
               {t('auth.login')}
-            </a>
+            </Link>
           </div>
         </CardContent>
       </Card>

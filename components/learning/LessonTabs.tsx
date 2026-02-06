@@ -27,20 +27,20 @@ interface LessonTabsProps {
 }
 
 export default function LessonTabs({ lesson, onProgress, startPosition = 0 }: LessonTabsProps) {
-  // 言語別動画IDを集約
+  // 言語別動画IDを集約（全言語で旧カラムをフォールバックに使用）
   const videoIds = {
     ja: lesson.cloudflare_video_id_ja || lesson.cloudflare_video_id || undefined,
-    id: lesson.cloudflare_video_id_id || undefined,
-    vi: lesson.cloudflare_video_id_vi || undefined,
-    en: lesson.cloudflare_video_id_en || undefined,
+    id: lesson.cloudflare_video_id_id || lesson.cloudflare_video_id || undefined,
+    vi: lesson.cloudflare_video_id_vi || lesson.cloudflare_video_id || undefined,
+    en: lesson.cloudflare_video_id_en || lesson.cloudflare_video_id || undefined,
   }
 
-  // 言語別音声パスを集約
+  // 言語別音声パスを集約（全言語で旧カラムをフォールバックに使用）
   const audioPaths = {
     ja: lesson.audio_storage_path_ja || lesson.audio_storage_path || undefined,
-    id: lesson.audio_storage_path_id || undefined,
-    vi: lesson.audio_storage_path_vi || undefined,
-    en: lesson.audio_storage_path_en || undefined,
+    id: lesson.audio_storage_path_id || lesson.audio_storage_path || undefined,
+    vi: lesson.audio_storage_path_vi || lesson.audio_storage_path || undefined,
+    en: lesson.audio_storage_path_en || lesson.audio_storage_path || undefined,
   }
 
   // 少なくとも1つの動画IDが存在するか

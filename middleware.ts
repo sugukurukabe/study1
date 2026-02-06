@@ -31,13 +31,16 @@ export async function middleware(request: NextRequest) {
   }
   
   // 2. 認証が必要なパスの保護
-  const protectedPaths = ['/home', '/learn', '/exam', '/profile', '/history', '/badges', '/referral']
+  const protectedPaths = ['/home', '/learn', '/exam', '/profile', '/history', '/badges', '/referral', '/onboarding', '/stats']
   const isProtectedPath = protectedPaths.some(path => 
     request.nextUrl.pathname.includes(path)
   )
   
   if (isProtectedPath && !user && hasSupabaseConfig) {
-    const loginUrl = new URL('/login', request.url)
+    // パスからロケールを抽出
+    const pathParts = request.nextUrl.pathname.split('/')
+    const locale = locales.includes(pathParts[1]) ? pathParts[1] : 'ja'
+    const loginUrl = new URL(`/${locale}/login`, request.url)
     loginUrl.searchParams.set('redirect', request.nextUrl.pathname)
     return NextResponse.redirect(loginUrl)
   }

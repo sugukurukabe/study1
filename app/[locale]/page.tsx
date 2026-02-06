@@ -153,20 +153,35 @@ export default async function LandingPage() {
   return (
     <>
       {structuredData}
-      <div className="min-h-screen overflow-hidden">
-        {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-20 px-4 overflow-hidden">
-        {/* パーティクル効果 */}
-        <ParticleField count={30} className="opacity-30" />
+      <div className="min-h-screen bg-white">
+        {/* Header Navigation */}
+        <header className="bg-white border-b sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-2">
+                <BookOpen className="h-8 w-8 text-indigo-600" />
+                <span className="text-xl font-bold text-gray-900">Sugu-Study</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <LanguageSwitcher currentLocale={locale} variant="default" />
+                <Link href={`/${locale}/login`}>
+                  <Button variant="ghost" size="sm">
+                    {t('auth.login')}
+                  </Button>
+                </Link>
+                <Link href={`/${locale}/signup`}>
+                  <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
+                    {t('auth.signup')}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
 
-        {/* フローティンググロー */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/30 rounded-full blur-3xl animate-pulse delay-700" />
-
-        {/* Language Switcher */}
-        <div className="absolute top-4 right-4 z-20">
-          <LanguageSwitcher currentLocale={locale} variant="hero" />
-        </div>
+        {/* Hero Section - Clean and Professional */}
+        <section className="bg-white py-16 md:py-24 px-4">
+          <div className="max-w-6xl mx-auto text-center">
 
         <div className="max-w-6xl mx-auto text-center pt-8 relative z-10">
           {/* Badges - FadeInUp */}
@@ -192,41 +207,29 @@ export default async function LandingPage() {
             </div>
           </FadeInUp>
 
-          {/* Title - ScaleIn with bounce */}
-          <ScaleIn delay={0.3}>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              {t('heroTitle')}
-            </h1>
-          </ScaleIn>
+            <FadeInUp delay={0.1}>
+              <div className="inline-flex items-center space-x-2 bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Award className="w-4 h-4" />
+                <span>{t('badge1')}</span>
+              </div>
+            </FadeInUp>
 
-          {/* Hero Subtitle Box */}
-          <FadeInUp delay={0.5}>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-10 max-w-3xl mx-auto border border-white/20">
-              <h2 className="text-2xl md:text-4xl font-bold mb-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <GlowBreath>
-                  <Target className="w-10 h-10 text-amber-300" />
-                </GlowBreath>
-                <span>{t('heroSubtitle')}</span>
-              </h2>
-              <p className="text-lg md:text-xl text-indigo-100 max-w-2xl mx-auto">
+            <FadeInUp delay={0.2}>
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                {t('heroTitle')}
+              </h1>
+            </FadeInUp>
+
+            <FadeInUp delay={0.3}>
+              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 {t('heroDescription')}
               </p>
-            </div>
-          </FadeInUp>
+            </FadeInUp>
 
-          {/* CTA Buttons - Staggered */}
-          <FadeInUp delay={0.7}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <HoverCard scale={1.05} glowColor="rgba(255,255,255,0.3)">
-                <Button asChild size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 text-lg px-10 py-6 rounded-xl shadow-xl">
-                  <a href="#sectors">
-                    {t('ctaPreview')}
-                  </a>
-                </Button>
-              </HoverCard>
-              <HoverCard scale={1.05} glowColor="rgba(251, 191, 36, 0.5)">
-                <Button asChild size="lg" className="bg-amber-400 text-amber-900 hover:bg-amber-300 text-lg px-10 py-6 rounded-xl shadow-xl font-bold">
-                  <Link href="/signup">
+            <FadeInUp delay={0.4}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <Button asChild size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-8 py-6 h-auto">
+                  <Link href={`/${locale}/signup`}>
                     {t('ctaSignup')}
                   </Link>
                 </Button>
@@ -619,9 +622,7 @@ export default async function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white relative overflow-hidden">
-        <ParticleField count={20} className="opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/80 via-purple-600/80 to-pink-500/80" />
+      <section className="py-16 md:py-20 px-4 bg-indigo-600 text-white relative">
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <FadeInUp>

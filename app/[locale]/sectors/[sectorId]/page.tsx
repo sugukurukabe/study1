@@ -170,7 +170,7 @@ export default async function SectorPage({ params }: PageProps) {
 
                 <div className="max-w-6xl mx-auto relative z-10">
                     <FadeInUp>
-                        <Link href="/" className="inline-flex items-center text-white/80 hover:text-white mb-8 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full transition-colors">
+                        <Link href={`/${locale}`} className="inline-flex items-center text-white/80 hover:text-white mb-8 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full transition-colors">
                             <ArrowLeft className="h-4 w-4 mr-2" />
                             トップページに戻る
                         </Link>
@@ -218,7 +218,7 @@ export default async function SectorPage({ params }: PageProps) {
 
                     {/* Main video card */}
                     <ScaleIn delay={0.2}>
-                        <Link href={`/sectors/${sectorId}/intro/overview`}>
+                        <Link href={`/${locale}/sectors/${sectorId}/intro/overview`}>
                             <HoverCard
                                 scale={1.02}
                                 glowColor={colors.glow}
@@ -273,7 +273,7 @@ export default async function SectorPage({ params }: PageProps) {
                     {/* Secondary video card */}
                     <FadeInUp delay={0.4}>
                         <div className="mt-4">
-                            <Link href={`/sectors/${sectorId}/intro/business`}>
+                            <Link href={`/${locale}/sectors/${sectorId}/intro/business`}>
                                 <HoverCard scale={1.01} glowColor={colors.glow}>
                                     <Card className="border hover:shadow-lg transition-all">
                                         <CardContent className="p-4 flex items-center justify-between">
@@ -298,7 +298,7 @@ export default async function SectorPage({ params }: PageProps) {
                 {/* Leader Course Section */}
                 <div className="mb-16">
                     <FadeInUp>
-                        <Link href={`/sectors/${sectorId}/courses`}>
+                        <Link href={`/${locale}/sectors/${sectorId}/courses`}>
                             <HoverCard scale={1.01} glowColor={colors.glow}>
                                 <Card className={`overflow-hidden border-2 ${colors.border}`}>
                                     <div className="flex flex-col sm:flex-row">
@@ -444,14 +444,14 @@ export default async function SectorPage({ params }: PageProps) {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <HoverCard scale={1.05} glowColor={colors.glow}>
                                 <Button asChild size="lg" className={colors.bg}>
-                                    <Link href="/signup">
+                                    <Link href={`/${locale}/signup`}>
                                         無料で登録する
                                     </Link>
                                 </Button>
                             </HoverCard>
                             <HoverCard scale={1.05}>
                                 <Button asChild size="lg" variant="outline">
-                                    <Link href="/preview">
+                                    <Link href={`/${locale}/preview`}>
                                         コンテンツをプレビュー
                                     </Link>
                                 </Button>

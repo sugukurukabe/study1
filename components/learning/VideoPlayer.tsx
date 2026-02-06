@@ -24,9 +24,9 @@ export default function VideoPlayer({
   const params = useParams()
   const currentLocale = (params.locale as string) || 'ja'
   
-  // 現在の言語の動画IDを取得、なければ日本語版にフォールバック
+  // 現在の言語の動画IDを取得、なければ日本語版にフォールバック、それもなければ最初に見つかったIDを使用
   const [selectedLanguage, setSelectedLanguage] = useState(currentLocale)
-  const cloudflareVideoId = videoIds[selectedLanguage as keyof typeof videoIds] || videoIds.ja || Object.values(videoIds)[0] || ''
+  const cloudflareVideoId = videoIds[selectedLanguage as keyof typeof videoIds] || videoIds.ja || Object.values(videoIds).find(id => id) || ''
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
@@ -155,16 +155,25 @@ export default function VideoPlayer({
         </div>
       )}
 
-      <video
-        ref={videoRef}
-        src={videoUrl}
-        className="w-full aspect-video"
-        onClick={togglePlay}
-        key={cloudflareVideoId}
-      >
-        <source src={videoUrl} type="application/x-mpegURL" />
-        お使いのブラウザは動画タグに対応していません。
-      </video>
+      {cloudflareVideoId ? (
+        <video
+          ref={videoRef}
+          src={videoUrl}
+          className="w-full aspect-video"
+          onClick={togglePlay}
+          key={cloudflareVideoId}
+        >
+          <source src={videoUrl} type="application/x-mpegURL" />
+          お使いのブラウザは動画タグに対応していません。
+        </video>
+      ) : (
+        <div className="w-full aspect-video bg-gray-900 flex items-center justify-center">
+          <div className="text-center text-white p-8">
+            <p className="text-xl mb-2">動画が見つかりません</p>
+            <p className="text-sm text-gray-400">このレッスンの動画はまだアップロードされていません</p>
+          </div>
+        </div>
+      )}
 
       {/* Controls */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">

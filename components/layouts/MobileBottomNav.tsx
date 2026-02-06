@@ -25,8 +25,8 @@ export default function MobileBottomNav({ profile }: MobileBottomNavProps) {
   ]
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50">
-      <div className="grid grid-cols-4 h-16">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-50 safe-area-inset-bottom">
+      <div className="grid grid-cols-4 h-20">
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname?.includes(item.href)
@@ -36,14 +36,14 @@ export default function MobileBottomNav({ profile }: MobileBottomNavProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex flex-col items-center justify-center space-y-1 transition-colors',
+                'flex flex-col items-center justify-center space-y-1.5 transition-colors active:scale-95 min-h-[44px]',
                 isActive 
-                  ? 'text-indigo-600' 
+                  ? 'text-indigo-600 font-semibold' 
                   : 'text-gray-600 hover:text-indigo-600'
               )}
             >
-              <Icon className="h-6 w-6" />
-              <span className="text-xs">{item.label}</span>
+              <Icon className="h-7 w-7" />
+              <span className="text-xs font-medium">{item.label}</span>
             </Link>
           )
         })}

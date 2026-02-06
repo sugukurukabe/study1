@@ -170,7 +170,7 @@ export default async function CategoryPage({ params }: PageProps) {
             {/* Header */}
             <div className={`bg-gradient-to-r ${colors.gradient} text-white py-12 px-4`}>
                 <div className="max-w-6xl mx-auto">
-                    <Link href={`/sectors/${sectorId}`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
+                    <Link href={`/${locale}/sectors/${sectorId}`} className="inline-flex items-center text-white/80 hover:text-white mb-4">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         {category.sectorName[lang]}に戻る
                     </Link>
@@ -296,7 +296,7 @@ export default async function CategoryPage({ params }: PageProps) {
                                     全レッスンの視聴が完了しました！章末テストに挑戦して、理解度を確認しましょう。
                                 </p>
                                 <Button asChild className={colors.bg}>
-                                    <Link href={`/sectors/${sectorId}/${categoryId}/quiz`}>
+                                    <Link href={`/${locale}/sectors/${sectorId}/${categoryId}/quiz`}>
                                         <FileQuestion className="h-4 w-4 mr-2" />
                                         章末テストを開始
                                     </Link>
