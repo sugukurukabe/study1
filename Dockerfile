@@ -25,7 +25,8 @@ ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 ENV NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID=$NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_ID
 
 # Build the application
-RUN npm run build
+# Google Fonts取得のためにネットワークアクセスを許可
+RUN --network=default npm run build
 
 # Stage 2: Production image
 FROM node:20-alpine AS runner

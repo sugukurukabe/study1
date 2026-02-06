@@ -6,15 +6,11 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  reactCompiler: true,
-  turbopack: {},
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
+    unoptimized: true, // Cloud Run対応
     remotePatterns: [
       {
         protocol: 'https',
